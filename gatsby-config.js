@@ -68,8 +68,8 @@ module.exports = {
         environments: ['production', 'development']
       },
     },
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    // `gatsby-plugin-sitemap`,
+    // `gatsby-plugin-robots-txt`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
