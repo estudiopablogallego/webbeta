@@ -25,5 +25,5 @@ jobs:
       - name: deploy width rsync
         run: |
           sudo apt-get install sshpass
-          sshpass -p "SSH_PASSWORD" rsync  -avzh -e 'ssh -o StrictHostKeyChecking=no' -p333  public/* lawebdee@estudiopablogallego.com:~/beta.estudiopablogallego.com
+          sshpass -p "SSH_PASSWORD" rsync  -avzh -e 'ssh -o StrictHostKeyChecking=no' public/* lawebdee@estudiopablogallego.com:333~/beta.estudiopablogallego.com
 
