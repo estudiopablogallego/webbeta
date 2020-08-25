@@ -21,3 +21,9 @@ jobs:
         run: |
           npm install
           npm run build
+
+      - name: deploy width rsync
+        run: |
+          sudo apt-get install sshpass
+          sshpass -p "SSH_PASSWORD" rsync  -avzh -e 'ssh -o StrictHostKeyChecking=no'   public/* lawebdee@estudiopablogallego.com:~/beta.estudiopablogallego.com
+
