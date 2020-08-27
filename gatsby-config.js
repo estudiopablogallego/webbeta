@@ -2,12 +2,14 @@ const postcssPresetEnv = require('postcss-preset-env')
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Estudio Pablo Gallego`,
+    description: ``,
+    author: `@tonicq`,
+    apiurl: `http://api.estudiopablogallego.com`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-process-wire-source`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
