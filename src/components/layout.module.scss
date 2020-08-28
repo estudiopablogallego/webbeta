@@ -1,0 +1,109 @@
+@import "../styles/shared";
+
+// .galeriacontainer{
+    // &:after {
+    //     content: "";
+    //     display: table;
+    //     clear: both;
+    // }
+    // margin-right: 2rem;
+    // @media#{$media-tablet-portrait}{
+    //     margin-right: 4rem;
+    // }
+    // .imageContainer{
+    //     position: relative;
+    //     float: left;
+    //     width: calc(50% - 2rem);
+    //     margin: 0 2rem 2rem 0;
+    //     @media#{$media-tablet-portrait}{
+    //         width: calc(50% - 4rem);
+    //         margin: 0 4rem 4rem 0;
+    //     }
+    //     @media#{$media-tablet-landscape}{
+    //         width: calc(33.33% - 4rem);
+    //         margin: 0 4rem 4rem 0;
+    //     }
+    // }
+    .galeria{
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #333;
+        will-change: transform;
+        .close{
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            right: 0;
+            >div>div{
+                background-color: white;
+                box-shadow: 0 0 0.4rem rgba(0,0,0,0.4);
+            }
+        }
+        .slideImage{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+            &:after{
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0; right: 0; bottom: 0; left: 0;
+                cursor: pointer;
+            }
+            >div{
+                width: 100%;
+                height: 100%;
+                background-color: #333;
+                will-change: transform;
+            }
+        }
+        .description{
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            @extend %font2;
+            line-height: 1.6em;
+            font-size: 1.3rem;
+            color: white;
+            background-color: rgba(0,0,0,0.2);
+            text-align: center;
+            padding: 4rem;
+            @media#{$media-tablet-portrait}{
+                text-align: left;
+                padding: 4rem;
+            }
+        }
+        .left,
+        .right{
+            display: none;
+            position: absolute;
+            top: calc(50% - 2rem);
+            left: 2rem;
+            width: 4rem;
+            height: 4rem;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            cursor: pointer;
+            @media#{$media-tablet-portrait}{
+                display: flex;
+            }
+            &:hover{
+                opacity: 0.6;
+            }
+            svg{
+                transform: scale(-1.5, 1.5);
+            }
+        }
+        .right{
+            left: auto;
+            right: 2rem;
+            svg{
+                transform: scale(1.5, 1.5);
+            }
+        }
+    }
+// }
