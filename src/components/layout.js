@@ -187,11 +187,7 @@ const Layout = ({ children }) => {
   // )
   
 
-  document.addEventListener("mousemove", onMouseMove);
-
-  const onMouseMove = (e) =>{
-    console.log(e)
-  }
+ 
 
   return (
     <>
