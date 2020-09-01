@@ -10,7 +10,6 @@ import Img from "gatsby-image/withIEPolyfill"
 import { useSprings, useSpring, animated as a } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import _ from 'lodash'
-
 import Header from "./header"
 import "./layout.css"
 import s from "./layout.module.scss"
@@ -40,7 +39,6 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  console.log(data.processwire.projects)
   const projects = data.processwire.projects;
   const apiurl = data.site.siteMetadata.apiurl
 
@@ -68,9 +66,17 @@ const Layout = ({ children }) => {
 		const { movement, canceled } = dragProps
 		const { down, delta: [xDelta], direction: [xDir], distance, cancel } = dragProps
 		if(typeof window !== 'undefined'){
-			if (!down && Math.abs(movement[0]) > window.innerWidth / 5) {
-				if(!canceled) cancel((activeSlide.current = _.clamp(activeSlide.current + _.clamp((movement[0])*-1, -1, 1), 0, slides.length - 1)))
-			  }
+			if (!down && Math.abs(movement[0]) > window.innerWidth / 12) {
+        if(!canceled) cancel((activeSlide.current = _.clamp(activeSlide.current + _.clamp((movement[0])*-1, -1, 1), 0, slides.length - 1)))
+      }
+      if (!down && Math.abs(movement[0]) < 2){
+        const x = dragProps.values[0]
+        if(x>window.innerWidth*0.5){
+          onClickRight()
+        } else {
+          onClickLeft()
+        }
+      }
 		}
 		
 		setSpringProps(i => {
@@ -92,7 +98,7 @@ const Layout = ({ children }) => {
 		activeSlide.current = _.clamp(activeSlide.current - 1, 0, slides.length - 1)
 		onClipUpdate()
 	}
-	const onClickLRight = () => {
+	const onClickRight = () => {
 		activeSlide.current = _.clamp(activeSlide.current + 1, 0, slides.length - 1)
 		onClipUpdate()
 	}
@@ -139,7 +145,7 @@ const Layout = ({ children }) => {
 	// 			</div>
 	// 			<div
 	// 				className={s.right}
-	// 				onClick={onClickLRight}>
+	// 				onClick={onClickRight}>
 	// 				<svg width="10" height="16" viewBox="19 0 10 20" fill="none">
 	// 					<path d="M27.63 9.37L18 19" stroke="#ffffff" strokeWidth="1.5"/>
 	// 					<path d="M27.62 10.62L18 1" stroke="#ffffff" strokeWidth="1.5"/>
@@ -178,13 +184,21 @@ const Layout = ({ children }) => {
 			
 
 	// 	</div>
-	// )
+  // )
+  
+
+  document.addEventListener("mousemove", onMouseMove);
+
+  const onMouseMove = (e) =>{
+    console.log(e)
+  }
+
   return (
     <>
       <div>
         <nav>
             <div className={s.galeria}>
-              <div
+              {/* <div
                 className={s.left}
                 onClick={onClickLeft}
                 >
@@ -192,22 +206,24 @@ const Layout = ({ children }) => {
                   <path d="M27.63 9.37L18 19" stroke="#ffffff" strokeWidth="1.5"/>
                   <path d="M27.62 10.62L18 1" stroke="#ffffff" strokeWidth="1.5"/>
                 </svg>
-              </div>
-              <div
+              </div> */}
+              {/* <div
                 className={s.right}
-                onClick={onClickLRight}
+                onClick={onClickRight}
                 >
                 <svg width="10" height="16" viewBox="19 0 10 20" fill="none">
                   <path d="M27.63 9.37L18 19" stroke="#ffffff" strokeWidth="1.5"/>
                   <path d="M27.62 10.62L18 1" stroke="#ffffff" strokeWidth="1.5"/>
                 </svg>
-              </div>
+              </div> */}
               {
                 springProps.map(({ x, display, sc }, i) => (
                   <a.div className={s.slideImage}
-                  {...bind()}
-                  key={i} style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}>
-                    <div>
+                    {...bind()}
+                    key={i}
+                    style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}
+                  >
+                    <div className={s.image_horizontal}>
                       <Img
                         fluid={
                           {
@@ -228,10 +244,42 @@ const Layout = ({ children }) => {
                           height: '100%'
                         }}
                       />
+                    </div>
+                    <div className={s.image_vertical}>
+                      <Img
+                        fluid={
+                          {
+                            aspectRatio: 1.5,
+                            base64: slides[i].beta_imagen_vertical_base64,
+                            sizes: "(max-width: 880px) 100vw, 880px",
+                            src: `${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/800/`,
+                            srcSet: `${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/220/ 220w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/440/ 440w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/880/ 880w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/980/ 980w`
+                          }
+                        }
+                        alt={slides[i].title}
+                        loading="eager"
+                        backgroundColor="#666666"
+                        objectFit="cover"
+                        backgroundColor="white"
+                        style={{
+                          width: '100%',
+                          height: '100%'
+                        }}
+                      />
+                    </div>
+                    <div className={s.text_box}>
                       {
-                        slides[i].title?
-                        <div className={s.description}>
-                          {slides[i].title}
+                        slides[i].projectTitle?
+                        <div className={s.projectTitle}>
+                          {slides[i].projectTitle}
+                        </div>
+                        :
+                        null
+                      }
+                      {
+                        slides[i].projectTexto?
+                        <div className={s.projectTexto}>
+                          {slides[i].projectTexto}
                         </div>
                         :
                         null
@@ -272,6 +320,7 @@ const Layout = ({ children }) => {
         <main>{children}</main>
         <footer>
         </footer>
+
       </div>
     </>
   )

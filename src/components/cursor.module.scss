@@ -1,0 +1,6 @@
+@import "../styles/shared";
+.container{
+    position: fixed;
+    border: 3px dotted red;
+    pointer-events: none;
+}

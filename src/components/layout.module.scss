@@ -54,26 +54,35 @@
                 top: 0; right: 0; bottom: 0; left: 0;
                 cursor: pointer;
             }
-            >div{
+            >div.image_horizontal,
+            >div.image_vertical{
                 width: 100%;
                 height: 100%;
                 background-color: #333;
                 will-change: transform;
             }
+            >div.image_horizontal{
+                display: none;
+                @media screen and (min-aspect-ratio: 1/1) {
+                    display: block;
+                }
+            }
+            >div.image_vertical{
+                display: block;
+                @media screen and (min-aspect-ratio: 1/1) {
+                    display: none;
+                }
+            }
         }
-        .description{
+        .text_box{
             position: absolute;
-            left: 0; right: 0; bottom: 0;
+            left: 4rem;
+            bottom: 4rem;
+            z-index: 5;
             @extend %font2;
-            line-height: 1.6em;
-            font-size: 1.3rem;
-            color: white;
-            background-color: rgba(0,0,0,0.2);
-            text-align: center;
-            padding: 4rem;
+           
             @media#{$media-tablet-portrait}{
-                text-align: left;
-                padding: 4rem;
+                
             }
         }
         .left,
