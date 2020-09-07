@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import s from "./cursor.module.scss"
+import { useSprings, useSpring, animated as a } from 'react-spring'
 
 const Cursor = () => {
 
@@ -80,7 +81,12 @@ const Cursor = () => {
             // onDrag={(e)=>{return false}}
             style={{ left: `${position.x}px`, top: `${position.y}px` }}
         >
-            <button />
+            <a.svg width="270px" height="22px" viewBox="0 0 270 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                <g id="arrow" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                    <a.polygon id="tri" fill="#000000" fillRule="nonzero" points="135 11 122 3.5 122 18.5" />
+                    <a.line x1={0} y1={11} x2={126} y2={11} id="line" stroke="#000000" />
+                </g>
+            </a.svg>
         </div>
     );
 };
