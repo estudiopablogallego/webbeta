@@ -1,6 +1,26 @@
 @import "../styles/shared";
 .container{
-    position: fixed;
-    border: 3px dotted red;
-    pointer-events: none;
+    display: none;
+    @media#{$media-tablet-portrait}{
+        // display: block;
+        position: fixed;
+        width: 0px;
+        height: 0px;
+        overflow: visible;
+        transform: translate(0px, -100px);
+        cursor: none;
+        button{
+            pointer-events: none;
+            border: 3px dotted red;
+            display: block;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            transform: translate(-100px, 0px);
+            background: none;
+        }
+    }
+    // pointer-events: none;
+    // pointer-events: none;
+    
 }

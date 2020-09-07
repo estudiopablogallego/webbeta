@@ -68,13 +68,20 @@ const Cursor = () => {
     //     "cursor--hidden": hidden,
     //     "cursor--link-hovered": linkHovered
     // });
+		// if(typeof window !== 'undefined'){
+    //   console.log("bodyyyyy")
+    //   document.body.style.cursor = 'none';
+    // }
 
     return (
         <div
             className={s.container}
+            // onClick={(e)=>{return false}}
+            // onDrag={(e)=>{return false}}
             style={{ left: `${position.x}px`, top: `${position.y}px` }}
-        />
+        >
+            <button />
+        </div>
     );
 };
-
 export default Cursor
