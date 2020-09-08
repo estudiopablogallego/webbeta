@@ -3,7 +3,7 @@ import s from "./cursor.module.scss"
 import { useSprings, useSpring, animated as a } from 'react-spring'
 // import { interpolate } from 'flubber'
 
-const Cursor = () => {
+const Cursor = ({imagenOscura}) => {
 
     const isMobile = () => {
         const ua = navigator.userAgent;
@@ -17,7 +17,7 @@ const Cursor = () => {
     const [linkHovered, setLinkHovered] = useState(false);
     const [hidden, setHidden] = useState(false);
 
-    const cursorFormaSpring = useSpring({
+    const cursorSpring = useSpring({
         linea: estado ==='pointer' ? 'M0,0 L100,0' :
         ( estado === 'right' ? 'M0,11 L126,11' :
         ( estado === 'left' ? 'M144,11 L270,11' :
@@ -28,6 +28,7 @@ const Cursor = () => {
         ( estado === 'left' ? 'M147,18.5 L147,3.5 L134,11' :
         'M0,0 L100,0 L100,0' )),
 
+        color: imagenOscura ? '#ffffff' : '#000000'
     })
 
     
@@ -108,12 +109,12 @@ const Cursor = () => {
             <a.svg width="270px" height="22px" viewBox="0 0 270 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <g id="arrow" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                     <a.path
-                        d={cursorFormaSpring.triangulo}
-                        fill="#000000"
+                        d={cursorSpring.triangulo}
+                        fill={cursorSpring.color}
                     />
                     <a.path
-                        d={cursorFormaSpring.linea}
-                        stroke="#000000"
+                        d={cursorSpring.linea}
+                        stroke={cursorSpring.color}
                     />
                 </g>
             </a.svg>

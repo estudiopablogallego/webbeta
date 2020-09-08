@@ -4,7 +4,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image/withIEPolyfill"
 import { useSprings, useSpring, animated as a } from 'react-spring'
@@ -13,6 +13,7 @@ import _ from 'lodash'
 import Header from "./header"
 import "./layout.css"
 import s from "./layout.module.scss"
+import Cursor from "./cursor"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,6 +26,7 @@ const Layout = ({ children }) => {
           media {
             type
             pwid
+            imagen_oscura
             beta_imagen_vertical
             beta_imagen_vertical_base64
             beta_imagen_horizontal
@@ -57,6 +59,7 @@ const Layout = ({ children }) => {
     })
   });
 
+  const [ fondoOscuro, setFondoOscuro ] = useState (slides[0].imagen_oscura)
 
   const activeSlide = useRef(0)
 	
@@ -84,7 +87,9 @@ const Layout = ({ children }) => {
 		  const x = typeof window !== 'undefined' ? (i - activeSlide.current) * window.innerWidth + (down ? movement[0] : 0) : null
 		  const sc = 1
 		  return { x, sc, display: 'block' }
-		})
+    })
+    setFondoOscuro(slides[activeSlide.current].imagen_oscura)
+    
 	})
 
 	// const onImageClick = i => {
@@ -108,7 +113,8 @@ const Layout = ({ children }) => {
 			const x = (i - activeSlide.current) * window.innerWidth
 			const sc = 1
 			return { x, sc, display: 'block' }
-		})
+    })
+    setFondoOscuro(slides[activeSlide.current].imagen_oscura)
 		// setIsLightboxOn(true)
 	}
 	// return(
@@ -186,7 +192,6 @@ const Layout = ({ children }) => {
 	// 	</div>
   // )
   
-
  
 
   return (
@@ -318,6 +323,8 @@ const Layout = ({ children }) => {
         </footer>
 
       </div>
+      <Cursor imagenOscura={fondoOscuro} />
+
     </>
   )
 }
