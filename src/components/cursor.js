@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import s from "./cursor.module.scss"
 import { useSprings, useSpring, animated as a } from 'react-spring'
+// import { interpolate } from 'flubber'
 
 const Cursor = () => {
 
@@ -9,11 +10,27 @@ const Cursor = () => {
         return /Android|Mobi/i.test(ua);
     };
     // if (typeof navigator !== "undefined" && isMobile()) return null;
+    const [estado, setEstado] = useState('default')
 
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [clicked, setClicked] = useState(false);
     const [linkHovered, setLinkHovered] = useState(false);
     const [hidden, setHidden] = useState(false);
+
+    const cursorFormaSpring = useSpring({
+        linea: estado ==='pointer' ? 'M0,0 L100,0' :
+        ( estado === 'right' ? 'M0,11 L126,11' :
+        ( estado === 'left' ? 'M144,11 L270,11' :
+        'M0,0 L100,0' )),
+
+        triangulo: estado ==='pointer' ? 'M0,0 L100,0 L100,0' :
+        ( estado === 'right' ? 'M135,11 L122,3.5 L122,18.5' :
+        ( estado === 'left' ? 'M147,18.5 L147,3.5 L134,11' :
+        'M0,0 L100,0 L100,0' )),
+
+    })
+
+    
 
     useEffect(() => {
         addEventListeners();
@@ -39,6 +56,12 @@ const Cursor = () => {
 
     const onMouseMove = (e) => {
         setPosition({ x: e.clientX, y: e.clientY });
+        if(e.clientX >= window.innerWidth * 0.5 && estado!=='right'){
+            setEstado('right')
+        }
+        if(e.clientX < window.innerWidth * 0.5 && estado!=='left'){
+            setEstado('left')
+        }
     };
 
     const onMouseDown = () => {
@@ -74,6 +97,7 @@ const Cursor = () => {
     //   document.body.style.cursor = 'none';
     // }
 
+    // const interpolator = interpolate(paths[index], paths[index + 1] || paths[0], { maxSegmentLength: 0.1 })
     return (
         <div
             className={s.container}
@@ -83,8 +107,14 @@ const Cursor = () => {
         >
             <a.svg width="270px" height="22px" viewBox="0 0 270 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <g id="arrow" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                    <a.polygon id="tri" fill="#000000" fillRule="nonzero" points="135 11 122 3.5 122 18.5" />
-                    <a.line x1={0} y1={11} x2={126} y2={11} id="line" stroke="#000000" />
+                    <a.path
+                        d={cursorFormaSpring.triangulo}
+                        fill="#000000"
+                    />
+                    <a.path
+                        d={cursorFormaSpring.linea}
+                        stroke="#000000"
+                    />
                 </g>
             </a.svg>
         </div>
