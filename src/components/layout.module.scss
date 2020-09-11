@@ -73,18 +73,45 @@
                     display: none;
                 }
             }
-        }
-        .text_box{
-            position: absolute;
-            left: 4rem;
-            bottom: 4rem;
-            z-index: 5;
-            @extend %font2;
-           
-            @media#{$media-tablet-portrait}{
-                
+            .text_box{
+                position: absolute;
+                right: 4.8rem;
+                bottom: 2rem;
+                left: 2rem;
+                z-index: 5;
+                @media#{$media-tablet-portrait}{
+                    width: 43%;
+                    right: auto;
+                    bottom: 5rem;
+                    left: 5rem;
+                }
+                .projectTitle,
+                .projectTexto{
+                    @extend %font1;
+                    line-height: 2.2rem;
+                    font-size: 1.6rem;
+                    color: #000;
+                    @media#{$media-tablet-portrait}{
+                        line-height: 2.8rem;
+                        font-size: 2.0rem;
+                    }
+                }
+                .projectTitle{
+                    font-weight: bold;
+                }
+                .projectTexto{
+                }
+            }
+            &.imagen_fondo_oscuro{
+                .text_box{
+                    .projectTitle,
+                    .projectTexto{
+                        color: #fff;
+                    }
+                }
             }
         }
+        
         .left,
         .right{
             display: none;

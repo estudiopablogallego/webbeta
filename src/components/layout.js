@@ -11,6 +11,7 @@ import { useSprings, useSpring, animated as a } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import _ from 'lodash'
 import Header from "./header"
+import "../styles/discreta.css"
 import "./layout.css"
 import s from "./layout.module.scss"
 import Cursor from "./cursor"
@@ -196,7 +197,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div>
+      <div className={`${fondoOscuro ? s.fondo_oscuro : ''}`}>
         <nav>
             <div className={s.galeria}>
               {/* <div
@@ -219,7 +220,7 @@ const Layout = ({ children }) => {
               </div> */}
               {
                 springProps.map(({ x, display, sc }, i) => (
-                  <a.div className={s.slideImage}
+                  <a.div className={`${s.slideImage} ${slides[i].imagen_oscura ? s.imagen_fondo_oscuro : ''}`}
                     {...bind()}
                     key={i}
                     style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}
