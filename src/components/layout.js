@@ -4,7 +4,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image/withIEPolyfill"
 import { useSprings, useSpring, animated as a } from 'react-spring'
@@ -42,6 +42,10 @@ const Layout = ({ children }) => {
       }
     }
   `)
+  ////
+  //SLIDES
+  ////
+
   const projects = data.processwire.projects;
   const apiurl = data.site.siteMetadata.apiurl
 
@@ -117,7 +121,76 @@ const Layout = ({ children }) => {
     })
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
 		// setIsLightboxOn(true)
-	}
+  }
+  
+  const setCursorPointer = () => {
+
+  }
+
+
+  ////
+  //CURSOR
+  ////
+  const [cursorEstado, setCursorEstado] = useState('default') //default left right pointer
+  const [clicked, setClicked] = useState(false);
+  const [linkHovered, setLinkHovered] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  const handleLinkHoverEvents = () => {
+    document.querySelectorAll("a").forEach((el) => {
+        el.addEventListener("mouseover", () => setLinkHovered(true));
+        el.addEventListener("mouseout", () => setLinkHovered(false));
+    });
+  };
+
+  const onMouseMove = (e) => {
+    if(e.clientX >= window.innerWidth * 0.5 && cursorEstado!=='right'){
+        setCursorEstado('right')
+    }
+    if(e.clientX < window.innerWidth * 0.5 && cursorEstado!=='left'){
+        setCursorEstado('left')
+    }
+  }
+  useEffect(() => {
+    addEventListeners();
+    handleLinkHoverEvents();
+    return () => removeEventListeners();
+}, []);
+
+const addEventListeners = () => {
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseenter", onMouseEnter);
+  document.addEventListener("mouseleave", onMouseLeave);
+  document.addEventListener("mousedown", onMouseDown);
+  document.addEventListener("mouseup", onMouseUp);
+};
+
+const removeEventListeners = () => {
+  document.removeEventListener("mousemove", onMouseMove);
+  document.removeEventListener("mouseenter", onMouseEnter);
+  document.removeEventListener("mouseleave", onMouseLeave);
+  document.removeEventListener("mousedown", onMouseDown);
+  document.removeEventListener("mouseup", onMouseUp);
+};
+
+
+
+const onMouseDown = () => {
+    setClicked(true);
+};
+
+const onMouseUp = () => {
+    setClicked(false);
+};
+
+const onMouseLeave = () => {
+    setHidden(true);
+};
+
+const onMouseEnter = () => {
+    setHidden(false);
+};
+
 	// return(
 	// 	<div className={s.container}>
 	// 		{
@@ -198,6 +271,20 @@ const Layout = ({ children }) => {
   return (
     <>
       <div className={`${fondoOscuro ? s.fondo_oscuro : ''}`}>
+        <header className={s.header}>
+          <h1>Estudio <strong>Pablo Gallego</strong></h1>
+          <nav>
+            <ul>
+              <li title="Trabajos" onMouseEnter={setCursorPointer}>
+                Trabajos
+              </li>
+              <li title="Info">
+                Info
+              </li>
+            </ul>
+          </nav>
+        </header>
+        
         <nav>
             <div className={s.galeria}>
               {/* <div
@@ -324,7 +411,7 @@ const Layout = ({ children }) => {
         </footer>
 
       </div>
-      <Cursor imagenOscura={fondoOscuro} />
+      <Cursor imagenOscura={fondoOscuro} cursorEstado={cursorEstado}/>
 
     </>
   )

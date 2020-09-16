@@ -3,29 +3,29 @@ import s from "./cursor.module.scss"
 import { useSprings, useSpring, animated as a } from 'react-spring'
 // import { interpolate } from 'flubber'
 
-const Cursor = ({imagenOscura}) => {
+const Cursor = ({imagenOscura, cursorEstado}) => {
 
     const isMobile = () => {
         const ua = navigator.userAgent;
         return /Android|Mobi/i.test(ua);
     };
-    // if (typeof navigator !== "undefined" && isMobile()) return null;
-    const [estado, setEstado] = useState('default')
-
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [clicked, setClicked] = useState(false);
-    const [linkHovered, setLinkHovered] = useState(false);
-    const [hidden, setHidden] = useState(false);
 
+    // if (typeof navigator !== "undefined" && isMobile()) return null;
+    // const [estado, setEstado] = useState('default')
+    const onMouseMove = (e) => {
+        setPosition({ x: e.clientX, y: e.clientY });
+      }
+    
     const cursorSpring = useSpring({
-        linea: estado ==='pointer' ? 'M0,0 L100,0' :
-        ( estado === 'right' ? 'M0,11 L126,11' :
-        ( estado === 'left' ? 'M144,11 L270,11' :
+        linea: cursorEstado ==='pointer' ? 'M0,0 L100,0' :
+        ( cursorEstado === 'right' ? 'M0,11 L126,11' :
+        ( cursorEstado === 'left' ? 'M144,11 L270,11' :
         'M0,0 L100,0' )),
 
-        triangulo: estado ==='pointer' ? 'M0,0 L100,0 L100,0' :
-        ( estado === 'right' ? 'M135,11 L122,3.5 L122,18.5' :
-        ( estado === 'left' ? 'M147,18.5 L147,3.5 L134,11' :
+        triangulo: cursorEstado ==='pointer' ? 'M0,0 L100,0 L100,0' :
+        ( cursorEstado === 'right' ? 'M135,11 L122,3.5 L122,18.5' :
+        ( cursorEstado === 'left' ? 'M147,18.5 L147,3.5 L134,11' :
         'M0,0 L100,0 L100,0' )),
 
         color: imagenOscura ? '#ffffff' : '#000000'
@@ -33,60 +33,11 @@ const Cursor = ({imagenOscura}) => {
 
     
 
-    useEffect(() => {
-        addEventListeners();
-        handleLinkHoverEvents();
-        return () => removeEventListeners();
-    }, []);
+    
 
-    const addEventListeners = () => {
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseenter", onMouseEnter);
-        document.addEventListener("mouseleave", onMouseLeave);
-        document.addEventListener("mousedown", onMouseDown);
-        document.addEventListener("mouseup", onMouseUp);
-    };
+    
 
-    const removeEventListeners = () => {
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseenter", onMouseEnter);
-        document.removeEventListener("mouseleave", onMouseLeave);
-        document.removeEventListener("mousedown", onMouseDown);
-        document.removeEventListener("mouseup", onMouseUp);
-    };
-
-    const onMouseMove = (e) => {
-        setPosition({ x: e.clientX, y: e.clientY });
-        if(e.clientX >= window.innerWidth * 0.5 && estado!=='right'){
-            setEstado('right')
-        }
-        if(e.clientX < window.innerWidth * 0.5 && estado!=='left'){
-            setEstado('left')
-        }
-    };
-
-    const onMouseDown = () => {
-        setClicked(true);
-    };
-
-    const onMouseUp = () => {
-        setClicked(false);
-    };
-
-    const onMouseLeave = () => {
-        setHidden(true);
-    };
-
-    const onMouseEnter = () => {
-        setHidden(false);
-    };
-
-    const handleLinkHoverEvents = () => {
-        document.querySelectorAll("a").forEach((el) => {
-            el.addEventListener("mouseover", () => setLinkHovered(true));
-            el.addEventListener("mouseout", () => setLinkHovered(false));
-        });
-    };
+    
     const cursorClasses = ""
     // const cursorClasses = classNames("cursor", {
     //     "cursor--clicked": clicked,
@@ -99,6 +50,19 @@ const Cursor = ({imagenOscura}) => {
     // }
 
     // const interpolator = interpolate(paths[index], paths[index + 1] || paths[0], { maxSegmentLength: 0.1 })
+
+    useEffect(() => {
+        addEventListeners();
+        return () => removeEventListeners();
+    }, []);
+    
+    const addEventListeners = () => {
+      document.addEventListener("mousemove", onMouseMove);
+    };
+    
+    const removeEventListeners = () => {
+      document.removeEventListener("mousemove", onMouseMove);
+    };
     return (
         <div
             className={s.container}
