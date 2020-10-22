@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master #on push to the master branch do the jobs below
-
+  workflow_dispatch:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
