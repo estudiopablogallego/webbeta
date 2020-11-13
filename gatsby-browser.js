@@ -5,3 +5,10 @@
  */
 
 // You can delete this file if you're not using it
+import React from "react"
+
+import { CursorProvider } from "./src/context/cursorContext"
+
+export const wrapRootElement = ({ element }) => (
+  <CursorProvider>{element}</CursorProvider>
+)

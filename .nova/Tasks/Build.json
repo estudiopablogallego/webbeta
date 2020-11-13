@@ -1,0 +1,18 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ngatsby clean & gatsby build"
+    },
+    "clean" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ngatsby clean"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ngatsby clean & gatsby develop"
+    }
+  },
+  "identifier" : "E0725C40-B0A6-4312-8E6F-27095778C8D8",
+  "openLogOnRun" : "start"
+}

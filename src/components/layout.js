@@ -4,7 +4,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect, useContext } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image/withIEPolyfill"
 import { useSprings, useSpring, animated as a } from 'react-spring'
@@ -15,6 +15,7 @@ import "../styles/discreta.css"
 import "./layout.css"
 import s from "./layout.module.scss"
 import Cursor from "./cursor"
+import CursorContext from '../context/cursorContext'
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -32,6 +33,8 @@ const Layout = ({ children }) => {
             beta_imagen_vertical_base64
             beta_imagen_horizontal
             beta_imagen_horizontal_base64
+            beta_video_horizontal
+            beta_video_vertical
           }
         }
       }
@@ -94,6 +97,7 @@ const Layout = ({ children }) => {
 		  return { x, sc, display: 'block' }
     })
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
+    cursorContextData.setBlanco(slides[activeSlide.current].imagen_oscura)
     
 	})
 
@@ -120,6 +124,7 @@ const Layout = ({ children }) => {
 			return { x, sc, display: 'block' }
     })
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
+    cursorContextData.setBlanco(slides[activeSlide.current].imagen_oscura)
 		// setIsLightboxOn(true)
   }
   
@@ -131,7 +136,8 @@ const Layout = ({ children }) => {
   ////
   //CURSOR
   ////
-  const [cursorEstado, setCursorEstado] = useState('default') //default left right pointer
+  const cursorContextData = useContext(CursorContext);
+  // const [cursorContextData, cursorContextData.setCursor] = useState('default') //default left right pointer
   const [clicked, setClicked] = useState(false);
   const [linkHovered, setLinkHovered] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -143,22 +149,23 @@ const Layout = ({ children }) => {
     });
   };
 
-  const onMouseMove = (e) => {
-    if(e.clientX >= window.innerWidth * 0.5 && cursorEstado!=='right'){
-        setCursorEstado('right')
+  const onMouseMove = (e, cursorContextData) => {
+    // console.log(cursorContextData.cursor)
+    if(e.clientX >= window.innerWidth * 0.5 && cursorContextData.cursor!=='right'){
+        cursorContextData.setCursor('right')
     }
-    if(e.clientX < window.innerWidth * 0.5 && cursorEstado!=='left'){
-        setCursorEstado('left')
+    if(e.clientX < window.innerWidth * 0.5 && cursorContextData.cursor!=='left'){
+        cursorContextData.setCursor('left')
     }
   }
   useEffect(() => {
-    addEventListeners();
+    addEventListeners(cursorContextData);
     handleLinkHoverEvents();
     return () => removeEventListeners();
 }, []);
 
-const addEventListeners = () => {
-  document.addEventListener("mousemove", onMouseMove);
+const addEventListeners = (cursorContextData) => {
+  document.addEventListener("mousemove", (e) => onMouseMove(e,cursorContextData));
   document.addEventListener("mouseenter", onMouseEnter);
   document.addEventListener("mouseleave", onMouseLeave);
   document.addEventListener("mousedown", onMouseDown);
@@ -269,7 +276,10 @@ const onMouseEnter = () => {
  
 
   return (
-    <>
+    <CursorContext.Consumer>
+        {cursor => {
+          return(
+          <>
       <div className={`${fondoOscuro ? s.fondo_oscuro : ''}`}>
         <header className={s.header}>
           <h1>Estudio <strong>Pablo Gallego</strong></h1>
@@ -312,6 +322,8 @@ const onMouseEnter = () => {
                     key={i}
                     style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}
                   >
+                  {
+                    slides[i].type === 'imagen' ?
                     <div className={s.image_horizontal}>
                       <Img
                         fluid={
@@ -334,6 +346,10 @@ const onMouseEnter = () => {
                         }}
                       />
                     </div>
+                    : null
+                  }
+                  {
+                    slides[i].type === 'imagen' ?
                     <div className={s.image_vertical}>
                       <Img
                         fluid={
@@ -356,6 +372,21 @@ const onMouseEnter = () => {
                         }}
                       />
                     </div>
+                    : null
+                    }{
+                      slides[i].type === 'video' ?
+                        <video className={s.video_horizontal} data-object-fit="cover" autoPlay loop muted>
+                          <source type="video/mp4" src={`${apiurl}${slides[i].beta_video_horizontal}`} />
+                        </video>
+                      : null
+                      }
+                      {
+                        slides[i].type === 'video' ?
+                          <video className={s.video_vertical} data-object-fit="cover" autoPlay loop muted>
+                            <source type="video/mp4" src={`${apiurl}${slides[i].beta_video_vertical}`} />
+                          </video>
+                        : null
+                        }
                     <div className={s.text_box}>
                       {
                         slides[i].projectTitle?
@@ -411,9 +442,11 @@ const onMouseEnter = () => {
         </footer>
 
       </div>
-      <Cursor imagenOscura={fondoOscuro} cursorEstado={cursorEstado}/>
+      <Cursor />
+      </>
+      )}}
 
-    </>
+    </CursorContext.Consumer>
   )
 }
 
