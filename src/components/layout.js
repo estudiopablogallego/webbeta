@@ -53,7 +53,8 @@ const Layout = ({ children }) => {
 
   const projects = data.processwire.projects
   const apiurl = data.site.siteMetadata.apiurl
-
+  // const imgPath = `${apiurl}/img`
+  const imgPath = `https://pablogallego.gumlet.net`
   const slides = []
   projects.forEach(project => {
     project.media.forEach((mediaItem, index) => {
@@ -367,8 +368,8 @@ const Layout = ({ children }) => {
                               aspectRatio: 1.5,
                               base64: slides[i].beta_imagen_horizontal_base64,
                               sizes: "(max-width: 880px) 100vw, 880px",
-                              src: `${apiurl}/img/${slides[i].pwid}/beta_imagen_horizontal/800/`,
-                              srcSet: `${apiurl}/img/${slides[i].pwid}/beta_imagen_horizontal/220/ 220w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_horizontal/440/ 440w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_horizontal/880/ 880w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_horizontal/980/ 980w`,
+                              src: `${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/800/`,
+                              srcSet: `${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/220/ 220w, ${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/440/ 440w, ${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/880/ 880w, ${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/980/ 980w`,
                             }}
                             alt={slides[i].title}
                             loading="eager"
@@ -396,8 +397,8 @@ const Layout = ({ children }) => {
                               aspectRatio: 1.5,
                               base64: slides[i].beta_imagen_vertical_base64,
                               sizes: "(max-width: 880px) 100vw, 880px",
-                              src: `${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/800/`,
-                              srcSet: `${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/220/ 220w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/440/ 440w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/880/ 880w, ${apiurl}/img/${slides[i].pwid}/beta_imagen_vertical/980/ 980w`,
+                              src: `${imgPath}/${slides[i].pwid}/beta_imagen_vertical/800/`,
+                              srcSet: `${imgPath}/${slides[i].pwid}/beta_imagen_vertical/220/ 220w, ${imgPath}/${slides[i].pwid}/beta_imagen_vertical/440/ 440w, ${imgPath}/${slides[i].pwid}/beta_imagen_vertical/880/ 880w, ${imgPath}/${slides[i].pwid}/beta_imagen_vertical/980/ 980w`,
                             }}
                             alt={slides[i].title}
                             loading="eager"
@@ -472,8 +473,8 @@ const Layout = ({ children }) => {
                         aspectRatio: 1.5,
                         base64: mediaItem.beta_imagen_horizontal_base64,
                         sizes: "(max-width: 880px) 100vw, 880px",
-                        src: `${apiurl}/img/${mediaItem.pwid}/beta_imagen_horizontal/800/`,
-                        srcSet: `${apiurl}/img/${mediaItem.pwid}/beta_imagen_horizontal/220/ 220w, ${apiurl}/img/${mediaItem.pwid}/beta_imagen_horizontal/440/ 440w, ${apiurl}/img/${mediaItem.pwid}/beta_imagen_horizontal/880/ 880w, ${apiurl}/img/${mediaItem.pwid}/beta_imagen_horizontal/980/ 980w`
+                        src: `${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/800/`,
+                        srcSet: `${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/220/ 220w, ${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/440/ 440w, ${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/880/ 880w, ${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/980/ 980w`
                       }
                     }
                   />
