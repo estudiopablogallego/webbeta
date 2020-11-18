@@ -300,6 +300,10 @@ const Layout = ({ children }) => {
   // 	</div>
   // )
 
+  //TRABAJOS
+
+  const [trabajosVisibles, setTrabajosVisibles] = useState(false)
+
   return (
     <CursorContext.Consumer>
       {cursor => {
@@ -312,14 +316,19 @@ const Layout = ({ children }) => {
                 </h1>
                 <nav>
                   <ul>
-                    <li title="Trabajos" onMouseEnter={setCursorPointer}>
+                    <li
+                      title="Trabajos"
+                      onMouseEnter={setCursorPointer}
+                      onClick={() => {
+                        setTrabajosVisibles(!trabajosVisibles)
+                      }}
+                    >
                       Trabajos
                     </li>
                     <li title="Info">Info</li>
                   </ul>
                 </nav>
               </header>
-
               <nav>
                 <div className={s.galeria}>
                   {/* <div
@@ -485,6 +494,39 @@ const Layout = ({ children }) => {
             </div>
           ))} */}
               </nav>
+              <div
+                className={`${s.trabajos_container} ${
+                  trabajosVisibles ? s.trabajos_visible : ""
+                }`}
+              >
+                <div
+                  className={s.trabajos_content_fondo}
+                  onClick={() => {
+                    setTrabajosVisibles(!trabajosVisibles)
+                  }}
+                />
+                <div className={s.trabajos_content}>
+                  <nav>
+                    <ul>
+                      {projects.map((project, index) => {
+                        const number = (index + 1).toString().padStart(2, "0")
+                        return (
+                          <li key={index}>
+                            <span>{number}</span>{" "}
+                            <strong>{project.title}</strong>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </nav>
+                </div>
+                <div
+                  className={s.trabajos_cerrar}
+                  onClick={() => {
+                    setTrabajosVisibles(!trabajosVisibles)
+                  }}
+                />
+              </div>
               <main>{children}</main>
               <footer></footer>
             </div>
