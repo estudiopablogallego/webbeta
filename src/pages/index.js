@@ -8,10 +8,7 @@ import SEO from "../components/seo"
 
 const IndexPage = () => (
   <>
-  <Layout>
-    <SEO title="Home" />
-    <h1>Estudio Pablo Gallego</h1>
-  </Layout>
+    <SEO title="Estudio Pablo Gallego diseño gráfico" />
   </>
 )
 

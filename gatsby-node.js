@@ -4,4 +4,44 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+const path = require("path")
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  const generalQuery = await graphql(
+    `
+      {
+        processwire {
+          projects {
+            pwid
+            title
+            slug
+            texto
+            seo_title
+            seo_description
+          }
+        }
+      }
+    `
+  )
+  // parentpage{
+  //     pwid
+  //     page_url
+  //     title
+  // }
+  console.log(generalQuery.data)
+  const projects = generalQuery.data.processwire.projects
+
+  const createProjectPage = project => {
+    console.log("--Creando página: " + project.title)
+    createPage({
+      path: project.slug,
+      component: path.resolve(`src/templates/project.js`),
+      context: {
+        ...project,
+      },
+    })
+  }
+  projects.forEach(createProjectPage)
+}

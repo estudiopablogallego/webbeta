@@ -6,6 +6,8 @@
  */
 import React, { useRef, useState, useEffect, useContext } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import TransitionLink from "gatsby-plugin-transition-link"
+
 import Img from "gatsby-image/withIEPolyfill"
 import { useSprings, useSpring, animated as a } from "react-spring"
 import { useDrag } from "react-use-gesture"
@@ -22,6 +24,7 @@ const Layout = ({ children }) => {
     query myprojects {
       processwire {
         projects {
+          slug
           title
           texto
           pwid
@@ -54,7 +57,7 @@ const Layout = ({ children }) => {
   const projects = data.processwire.projects
   const apiurl = data.site.siteMetadata.apiurl
   // const imgPath = `${apiurl}/img`
-  const imgPath = `https://pablogallego.gumlet.net`
+  const imgPath = `https://estudiopablogallego.gumlet.net`
   const slides = []
   projects.forEach(project => {
     project.media.forEach((mediaItem, index) => {
@@ -310,10 +313,11 @@ const Layout = ({ children }) => {
         return (
           <>
             <div className={`${fondoOscuro ? s.fondo_oscuro : ""}`}>
+              <main>{children}</main>
               <header className={s.header}>
-                <h1>
+                <h2>
                   Estudio <strong>Pablo Gallego</strong>
-                </h1>
+                </h2>
                 <nav>
                   <ul>
                     <li
@@ -430,7 +434,12 @@ const Layout = ({ children }) => {
                             ]
                           }`}
                         >
-                          <video data-object-fit="cover" autoPlay loop muted>
+                          <video
+                            data-object-fit="cover"
+                            // autoPlay
+                            loop
+                            muted
+                          >
                             <source
                               type="video/mp4"
                               src={`${apiurl}${slides[i].beta_video_horizontal}`}
@@ -447,7 +456,12 @@ const Layout = ({ children }) => {
                             ]
                           }`}
                         >
-                          <video data-object-fit="cover" autoPlay loop muted>
+                          <video
+                            data-object-fit="cover"
+                            // autoPlay
+                            loop
+                            muted
+                          >
                             <source
                               type="video/mp4"
                               src={`${apiurl}${slides[i].beta_video_vertical}`}
@@ -512,8 +526,10 @@ const Layout = ({ children }) => {
                         const number = (index + 1).toString().padStart(2, "0")
                         return (
                           <li key={index}>
-                            <span>{number}</span>{" "}
-                            <strong>{project.title}</strong>
+                            <TransitionLink to={`/${project.slug}`}>
+                              <span>{number}</span>{" "}
+                              <strong>{project.title}</strong>
+                            </TransitionLink>
                           </li>
                         )
                       })}
@@ -527,7 +543,6 @@ const Layout = ({ children }) => {
                   }}
                 />
               </div>
-              <main>{children}</main>
               <footer></footer>
             </div>
             <Cursor />

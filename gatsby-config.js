@@ -1,11 +1,11 @@
-const postcssPresetEnv = require('postcss-preset-env')
+const postcssPresetEnv = require("postcss-preset-env")
 
 module.exports = {
   siteMetadata: {
     title: `Estudio Pablo Gallego`,
     description: ``,
     author: `@tonicq`,
-    apiurl: `http://api.estudiopablogallego.com`
+    apiurl: `http://api.estudiopablogallego.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,8 +22,8 @@ module.exports = {
       options: {
         postCssPlugins: [
           postcssPresetEnv({
-            browsers: '> 0.5%, last 2 versions, ie 11'
-          })
+            browsers: "> 0.5%, last 2 versions, ie 11",
+          }),
         ],
       },
     },
@@ -31,24 +31,29 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /images/ // See below to configure properly
-        }
-      }
+          include: /images/, // See below to configure properly
+        },
+      },
     },
-
+    {
+      resolve: "gatsby-plugin-transition-link",
+      options: {
+        layout: require.resolve(`./src/components/layout.js`),
+      },
+    },
     {
       resolve: `gatsby-plugin-gdpr-cookies`,
       options: {
         googleAnalytics: {
-          trackingId: 'YOUR_GOOGLE_ANALYTICS_TRACKING_ID',
+          trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
           // Setting this parameter is optional
-          anonymize: true
+          anonymize: true,
         },
         facebookPixel: {
-          pixelId: 'YOUR_FACEBOOK_PIXEL_ID'
+          pixelId: "YOUR_FACEBOOK_PIXEL_ID",
         },
         // Defines the environments where the tracking should be available  - default is ["production"]
-        environments: ['production', 'development']
+        environments: ["production", "development"],
       },
     },
     // `gatsby-plugin-sitemap`,
