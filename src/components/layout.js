@@ -60,6 +60,7 @@ const Layout = ({ children }) => {
   const imgPath = `https://estudiopablogallego.gumlet.net`
   const slides = []
   projects.forEach(project => {
+    project.slideNumber = slides.length
     project.media.forEach((mediaItem, index) => {
       const slide = {
         isFirstPage: index === 0,
@@ -72,7 +73,6 @@ const Layout = ({ children }) => {
       slides.push(slide)
     })
   })
-
   const [fondoOscuro, setFondoOscuro] = useState(slides[0].imagen_oscura)
 
   const activeSlide = useRef(0)
@@ -143,6 +143,12 @@ const Layout = ({ children }) => {
     activeSlide.current = _.clamp(activeSlide.current + 1, 0, slides.length - 1)
     onClipUpdate()
   }
+
+  const goToSlide = n => {
+    activeSlide.current = n
+    onClipUpdate()
+  }
+
   const onClipUpdate = () => {
     setSpringProps(i => {
       if (i < activeSlide.current - 1 || i > activeSlide.current + 1)
@@ -526,7 +532,10 @@ const Layout = ({ children }) => {
                         const number = (index + 1).toString().padStart(2, "0")
                         return (
                           <li key={index}>
-                            <TransitionLink to={`/${project.slug}`}>
+                            <TransitionLink
+                              to={`/${project.slug}`}
+                              onClick={() => goToSlide(project.slideNumber)}
+                            >
                               <span>{number}</span>{" "}
                               <strong>{project.title}</strong>
                             </TransitionLink>
