@@ -317,6 +317,7 @@ const Layout = ({ children }) => {
   //TRABAJOS
 
   const [trabajosVisibles, setTrabajosVisibles] = useState(false)
+  const [acercaVisible, setAcercaVisible] = useState(false)
 
   return (
     <CursorContext.Consumer>
@@ -340,7 +341,15 @@ const Layout = ({ children }) => {
                     >
                       Trabajos
                     </li>
-                    <li title="Info">Info</li>
+                    <li
+                      title="Info"
+                      onMouseEnter={setCursorPointer}
+                      onClick={() => {
+                        setAcercaVisible(!acercaVisible)
+                      }}
+                    >
+                      Info
+                    </li>
                   </ul>
                 </nav>
               </header>
@@ -554,6 +563,74 @@ const Layout = ({ children }) => {
                   className={s.trabajos_cerrar}
                   onClick={() => {
                     setTrabajosVisibles(!trabajosVisibles)
+                  }}
+                />
+              </div>
+
+              <div
+                className={`${s.acerca_container} ${
+                  acercaVisible ? s.acerca_visible : ""
+                }`}
+              >
+                <div
+                  className={s.acerca_content_fondo}
+                  onClick={() => {
+                    setAcercaVisible(!acercaVisible)
+                  }}
+                />
+                <div className={s.acerca_content}>
+                  <div className={s.acerca_textos}>
+                    <p className={s.acerca_destacado}>
+                      Diseñamos conceptos, imágenes y narrativas capaces de
+                      definir estratégicamente una marca y permitir su
+                      activación fluida en los puntos de contacto relevantes:
+                      sede digital, entorno físico, producto, comunicación.
+                    </p>
+                    <p>
+                      Donec aliquet urna tempus consequat molestie. Sed non est
+                      sed mauris consequat pellentesque. Aenean nulla felis,
+                      egestas at varius non, dictum at tortor. Donec ut
+                      sollicitudin nulla. Class aptent taciti sociosqu ad litora
+                      torquent per conubia nostra, per inceptos himenaeos. Donec
+                      ultrices, urna nec tristique facilisis, dolor nisl varius
+                      libero, quis ornare ipsum lacus id eros. Mauris hendrerit
+                      rhoncus orci vel sodales. Nulla facilisi. Etiam nunc
+                      magna, commodo luctus diam eu, aliquet volutpat sem.
+                      Praesent sem magna, fermentum vitae auctor vel, efficitur
+                      quis est. Sed quis nunc pulvinar, pulvinar ligula
+                      sollicitudin, mattis lorem. Sed et aliquet lectus. Etiam
+                      mattis metus vel magna aliquet, quis rhoncus sem interdum.
+                      Aliquam vehicula in est eu placerat. Nulla fermentum
+                      tortor ut tempus molestie. Mauris vel congue lacus. Ut
+                      lobortis sagittis semper. Vivamus sit amet sem at sapien
+                      tincidunt iaculis vel id justo. Duis luctus tortor id
+                      accumsan egestas. Proin sem turpis, vulputate at enim ac,
+                      luctus elementum velit. Nullam finibus tempus ultricies.
+                      Integer accumsan viverra pulvinar. Donec metus erat,
+                      dictum et semper eget, dapibus ac sapien. Nulla fermentum
+                      tortor ut tempus molestie. Mauris vel congue lacus. Ut
+                      lobortis sagittis semper. Vivamus sit amet sem at sapien
+                      tincidunt iaculis vel id justo.
+                    </p>
+                    <h6>Contacto</h6>
+                    <p className={s.acerca_destacado}>
+                      Si quieres conocernos ponte en contacto en nuestro{" "}
+                      <a href="mailto:info@estudiopablogallego.com">email</a> o
+                      pásate por nuestro{" "}
+                      <a
+                        href="https://goo.gl/maps/XeBBkwg1ykxEKomRA"
+                        target="_blank"
+                      >
+                        estudio
+                      </a>
+                      .
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className={s.acerca_cerrar}
+                  onClick={() => {
+                    setAcercaVisible(!acercaVisible)
                   }}
                 />
               </div>

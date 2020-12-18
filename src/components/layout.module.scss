@@ -594,7 +594,7 @@
     list-style: none;
     @media #{$media-tablet-portrait} {
       padding-top: 16rem;
-      padding-left: 9.6em;
+      padding-left: 12.9%;
     }
     @media only screen and (min-width: 768px) and (max-height: 550px) {
       padding-top: 10rem;
@@ -624,6 +624,135 @@
   }
 }
 .trabajos_cerrar {
+  display: block;
+  position: absolute;
+  top: 3.8rem;
+  right: 3.8rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  border: 1px solid black;
+
+  cursor: pointer;
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    width: 2.7rem;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 0.9rem;
+    background-color: black;
+    transition: transform 0.3s ease-in-out;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+  &:hover {
+    &::before {
+      transform: rotate(225deg);
+    }
+    &::after {
+      transform: rotate(135deg);
+    }
+  }
+}
+
+.acerca_container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+
+  transform: translateX(110%);
+  transition: transform 0.3s ease-in-out;
+}
+.acerca_visible {
+  transform: translateX(0%);
+}
+.acerca_content_fondo {
+  display: none;
+  @media #{$media-tablet-portrait} {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 50%;
+    bottom: 0;
+    left: 0;
+  }
+}
+.acerca_content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $c-amarillo;
+  @media #{$media-tablet-portrait} {
+    left: 50%;
+  }
+  overflow-y: auto;
+
+  .acerca_textos {
+    padding: 13.6rem 2.4rem 2.4rem 2.4rem;
+    min-height: 100%;
+    list-style: none;
+    @media #{$media-tablet-portrait} {
+      padding-top: 16rem;
+      padding-left: 12.9%;
+      padding-right: 12.9%;
+
+      padding-bottom: 16rem;
+    }
+    @media only screen and (min-width: 768px) and (max-height: 550px) {
+      padding-top: 10rem;
+    }
+    @extend %font1;
+    line-height: 2.8rem;
+    font-size: 1.6rem;
+    p {
+      position: relative;
+      margin-bottom: 3em;
+
+      line-height: 2.8rem;
+      font-size: 1.6rem;
+      a {
+        text-decoration: underline;
+        color: black;
+        @media #{$media-tablet-portrait} {
+          font-weight: 700;
+        }
+      }
+      strong {
+        font-weight: 700;
+      }
+      &.acerca_destacado {
+        line-height: 3.5rem;
+        font-size: 2.5rem;
+      }
+    }
+    h6 {
+      margin-top: 4rem;
+      font-weight: 700;
+      line-height: 2.5rem;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      border-top: 0.05rem solid black;
+
+      @media #{$media-tablet-portrait} {
+        margin-top: 14rem;
+        padding-top: 0.4rem;
+      }
+    }
+  }
+}
+.acerca_cerrar {
   display: block;
   position: absolute;
   top: 3.8rem;
