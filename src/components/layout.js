@@ -114,8 +114,11 @@ const Layout = ({ children }) => {
     }
 
     setSpringProps(i => {
-      if (i < activeSlide.current - 1 || i > activeSlide.current + 1)
+      console.log(i)
+      if (i < activeSlide.current - 1 || i > activeSlide.current + 3) {
         return { display: "none" }
+      }
+
       const x =
         typeof window !== "undefined"
           ? (i - activeSlide.current) * window.innerWidth +
@@ -146,13 +149,16 @@ const Layout = ({ children }) => {
 
   const goToSlide = n => {
     activeSlide.current = n
-    onClipUpdate()
+    setTrabajosVisibles(false)
+    onClipUpdate(true)
   }
 
-  const onClipUpdate = () => {
+  const onClipUpdate = visibleAll => {
     setSpringProps(i => {
-      if (i < activeSlide.current - 1 || i > activeSlide.current + 1)
-        return { display: "none" }
+      if (!visibleAll) {
+        if (i < activeSlide.current - 1 || i > activeSlide.current + 3)
+          return { display: "none" }
+      }
       const x = (i - activeSlide.current) * window.innerWidth
       const sc = 1
       return { x, sc, display: "block" }
@@ -181,7 +187,6 @@ const Layout = ({ children }) => {
   }
 
   const onMouseMove = (e, cursorContextData) => {
-    // console.log(cursorContextData.cursor)
     if (
       e.clientX >= window.innerWidth * 0.5 &&
       cursorContextData.cursor !== "right"
