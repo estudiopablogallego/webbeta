@@ -4,7 +4,13 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-import React, { useRef, useState, useEffect, useContext } from "react"
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useContext,
+  useLayoutEffect,
+} from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import TransitionLink from "gatsby-plugin-transition-link"
 
@@ -59,14 +65,17 @@ const Layout = ({ children }) => {
   // const imgPath = `${apiurl}/img`
   const imgPath = `https://estudiopablogallego.gumlet.net`
   const slides = []
+  let indexCounter = 0
   projects.forEach(project => {
     project.slideNumber = slides.length
     project.media.forEach((mediaItem, index) => {
       const slide = {
         isFirstPage: index === 0,
+        index: indexCounter++,
         ...mediaItem,
       }
       if (index === 0) {
+        slide.projectSlug = project.slug
         slide.projectTitle = project.title
         slide.projectTexto = project.texto
       }
@@ -75,7 +84,7 @@ const Layout = ({ children }) => {
   })
   const [fondoOscuro, setFondoOscuro] = useState(slides[0].imagen_oscura)
 
-  const activeSlide = useRef(0)
+  const activeSlide = useRef(-1)
 
   const [springProps, setSpringProps] = useSprings(slides.length, i => ({
     x: typeof window !== "undefined" ? i * window.innerWidth : 0,
@@ -318,6 +327,21 @@ const Layout = ({ children }) => {
 
   const [trabajosVisibles, setTrabajosVisibles] = useState(false)
   const [acercaVisible, setAcercaVisible] = useState(false)
+
+  const lanzadaPrimeraSlide = useRef(false)
+  useLayoutEffect(() => {
+    if (!lanzadaPrimeraSlide.current) {
+      lanzadaPrimeraSlide.current = true
+      console.log("lanzando.....", slides)
+      console.log(window.location.pathname.substring(1))
+      const loadedSlide = _.find(slides, {
+        projectSlug: window.location.pathname.substring(1),
+      })
+      console.log(loadedSlide)
+      goToSlide(loadedSlide.index)
+      return
+    }
+  })
 
   return (
     <CursorContext.Consumer>
