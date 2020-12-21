@@ -11,7 +11,7 @@ import React, {
   useContext,
   useLayoutEffect,
 } from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, navigate } from "gatsby"
 import TransitionLink from "gatsby-plugin-transition-link"
 
 import Img from "gatsby-image/withIEPolyfill"
@@ -74,11 +74,11 @@ const Layout = ({ children }) => {
         index: indexCounter++,
         ...mediaItem,
       }
-      if (index === 0) {
-        slide.projectSlug = project.slug
-        slide.projectTitle = project.title
-        slide.projectTexto = project.texto
-      }
+      //if (index === 0) {
+      slide.projectSlug = project.slug
+      slide.projectTitle = project.title
+      slide.projectTexto = project.texto
+      //}
       slides.push(slide)
     })
   })
@@ -123,7 +123,6 @@ const Layout = ({ children }) => {
     }
 
     setSpringProps(i => {
-      console.log(i)
       if (i < activeSlide.current - 1 || i > activeSlide.current + 3) {
         return { display: "none" }
       }
@@ -150,10 +149,19 @@ const Layout = ({ children }) => {
   const onClickLeft = () => {
     activeSlide.current = _.clamp(activeSlide.current - 1, 0, slides.length - 1)
     onClipUpdate()
+    updateUrlName()
   }
   const onClickRight = () => {
     activeSlide.current = _.clamp(activeSlide.current + 1, 0, slides.length - 1)
     onClipUpdate()
+    updateUrlName()
+  }
+
+  const updateUrlName = () => {
+    const currentUrlProjectSlug = window.location.pathname.substring(1)
+    if (currentUrlProjectSlug !== slides[activeSlide.current].projectSlug) {
+      navigate(`/${slides[activeSlide.current].projectSlug}`)
+    }
   }
 
   const goToSlide = n => {
@@ -332,13 +340,15 @@ const Layout = ({ children }) => {
   useLayoutEffect(() => {
     if (!lanzadaPrimeraSlide.current) {
       lanzadaPrimeraSlide.current = true
-      console.log("lanzando.....", slides)
-      console.log(window.location.pathname.substring(1))
       const loadedSlide = _.find(slides, {
         projectSlug: window.location.pathname.substring(1),
       })
-      console.log(loadedSlide)
-      goToSlide(loadedSlide.index)
+      if (loadedSlide) {
+        console.log("CARTANDODO")
+        goToSlide(loadedSlide.index)
+      } else {
+        goToSlide(0)
+      }
       return
     }
   })
