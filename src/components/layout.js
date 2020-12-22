@@ -522,8 +522,9 @@ const Layout = ({ children }) => {
                               to={`/${project.slug}`}
                               onClick={() => goToSlide(project.slideNumber)}
                               onMouseEnter={() => setCursorPointer("pointer")}
+                              onMouseMove={() => setCursorPointer("pointer")}
                               onMouseLeave={() => setCursorPointer("default")}
-                              className={isCurrent ? "active" : ""}
+                              className={isCurrent ? s.activo : ""}
                             >
                               <span>{number}</span>{" "}
                               <strong>{project.title}</strong>
@@ -536,6 +537,9 @@ const Layout = ({ children }) => {
                 </div>
                 <div
                   className={s.trabajos_cerrar}
+                  onMouseEnter={() => setCursorPointer("pointer")}
+                  onMouseMove={() => setCursorPointer("pointer")}
+                  onMouseLeave={() => setCursorPointer("default")}
                   onClick={() => {
                     setTrabajosVisibles(!trabajosVisibles)
                     cursorContextData.setBlanco(
@@ -602,6 +606,9 @@ const Layout = ({ children }) => {
                 </div>
                 <div
                   className={s.acerca_cerrar}
+                  onMouseEnter={() => setCursorPointer("pointer")}
+                  onMouseMove={() => setCursorPointer("pointer")}
+                  onMouseLeave={() => setCursorPointer("default")}
                   onClick={() => {
                     setAcercaVisible(!acercaVisible)
                   }}
