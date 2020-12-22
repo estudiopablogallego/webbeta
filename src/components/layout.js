@@ -185,7 +185,11 @@ const Layout = ({ children }) => {
     // setIsLightboxOn(true)
   }
 
-  const setCursorPointer = () => {}
+  const setCursorPointer = modo => {
+    if (cursorContextData.cursor !== modo) {
+      cursorContextData.setCursor(modo)
+    }
+  }
 
   ////
   //CURSOR
@@ -204,17 +208,11 @@ const Layout = ({ children }) => {
   }
 
   const onMouseMove = (e, cursorContextData) => {
-    if (
-      e.clientX >= window.innerWidth * 0.5 &&
-      cursorContextData.cursor !== "right"
-    ) {
-      cursorContextData.setCursor("right")
+    if (e.clientX >= window.innerWidth * 0.5) {
+      setCursorPointer("right")
     }
-    if (
-      e.clientX < window.innerWidth * 0.5 &&
-      cursorContextData.cursor !== "left"
-    ) {
-      cursorContextData.setCursor("left")
+    if (e.clientX < window.innerWidth * 0.5) {
+      setCursorPointer("left")
     }
   }
   useEffect(() => {
@@ -224,9 +222,9 @@ const Layout = ({ children }) => {
   }, [])
 
   const addEventListeners = cursorContextData => {
-    document.addEventListener("mousemove", e =>
-      onMouseMove(e, cursorContextData)
-    )
+    // document.addEventListener("mousemove", e =>
+    //   onMouseMove(e, cursorContextData)
+    // )
     document.addEventListener("mouseenter", onMouseEnter)
     document.addEventListener("mouseleave", onMouseLeave)
     document.addEventListener("mousedown", onMouseDown)
@@ -368,7 +366,7 @@ const Layout = ({ children }) => {
                   <ul>
                     <li
                       title="Trabajos"
-                      onMouseEnter={setCursorPointer}
+                      onMouseEnter={() => setCursorPointer("pointer")}
                       onClick={() => {
                         setTrabajosVisibles(!trabajosVisibles)
                       }}
@@ -377,7 +375,7 @@ const Layout = ({ children }) => {
                     </li>
                     <li
                       title="Info"
-                      onMouseEnter={setCursorPointer}
+                      onMouseEnter={() => setCursorPointer("pointer")}
                       onClick={() => {
                         setAcercaVisible(!acercaVisible)
                       }}
@@ -388,7 +386,10 @@ const Layout = ({ children }) => {
                 </nav>
               </header>
               <nav>
-                <div className={s.galeria}>
+                <div
+                  className={s.galeria}
+                  onMouseMove={e => onMouseMove(e, cursorContextData)}
+                >
                   {/* <div
                 className={s.left}
                 onClick={onClickLeft}
