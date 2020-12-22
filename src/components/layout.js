@@ -255,80 +255,6 @@ const Layout = ({ children }) => {
     setHidden(false)
   }
 
-  // return(
-  // 	<div className={s.container}>
-  // 		{
-  // 			galeriaimages.map((image, i) => (
-  // 				<div onClick={() => onImageClick(i)} key={image.url} className={s.imageContainer}>
-  // 					<Img
-  // 						// fluid={image.image.childImageSharp.fluid}
-  // 						sizes={{ ...image.image.childImageSharp.fluid, aspectRatio: 1 / 1 }}
-  // 						alt={image.description}
-  // 						loading="eager"
-  // 						backgroundColor="#666666"
-  // 						objectFit="cover"
-  // 						objectPosition={`${image.focus.left}% ${image.focus.top}%`}
-  // 						backgroundColor="white"
-  // 					/>
-  // 				</div>
-  // 			))
-  // 		}
-  // 		<a.div style={lightBoxSpring} className={s.lightbox}>
-  // 			<div
-  // 				className={s.close}
-  // 			>
-  // 				<CloseButton onClickPassedEvent={onLightBoxClose} />
-  // 			</div>
-  // 			<div
-  // 				className={s.left}
-  // 				onClick={onClickLeft}>
-  //               	<svg width="10" height="16" viewBox="19 0 10 20" fill="none">
-  // 					<path d="M27.63 9.37L18 19" stroke="#ffffff" strokeWidth="1.5"/>
-  // 					<path d="M27.62 10.62L18 1" stroke="#ffffff" strokeWidth="1.5"/>
-  // 				</svg>
-  // 			</div>
-  // 			<div
-  // 				className={s.right}
-  // 				onClick={onClickRight}>
-  // 				<svg width="10" height="16" viewBox="19 0 10 20" fill="none">
-  // 					<path d="M27.63 9.37L18 19" stroke="#ffffff" strokeWidth="1.5"/>
-  // 					<path d="M27.62 10.62L18 1" stroke="#ffffff" strokeWidth="1.5"/>
-  // 				</svg>
-  // 			</div>
-  // 			{
-  // 				springProps.map(({ x, display, sc }, i) => (
-  // 					<a.div className={s.slideImage} {...bind()} key={i} style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}>
-  // 						<div>
-  // 							<Img
-  // 								fluid={galeriaimages[i].image.childImageSharp.fluid}
-  // 								alt={galeriaimages[i].description}
-  // 								loading="eager"
-  // 								backgroundColor="#666666"
-  // 								objectFit="contain"
-  // 								backgroundColor="white"
-  // 								style={{
-  // 									width: '100%',
-  // 									height: '100%'
-  // 								}}
-  // 							/>
-  // 							{
-  // 								galeriaimages[i].description?
-  // 								<div className={s.description}>
-  // 									{galeriaimages[i].description}
-  // 								</div>
-  // 								:
-  // 								null
-  // 							}
-
-  // 						</div>
-  // 					</a.div>
-  // 				))
-  // 			}
-  // 		</a.div>
-
-  // 	</div>
-  // )
-
   //TRABAJOS
 
   const [trabajosVisibles, setTrabajosVisibles] = useState(false)
@@ -367,8 +293,10 @@ const Layout = ({ children }) => {
                     <li
                       title="Trabajos"
                       onMouseEnter={() => setCursorPointer("pointer")}
+                      onMouseLeave={() => setCursorPointer("default")}
                       onClick={() => {
                         setTrabajosVisibles(!trabajosVisibles)
+                        cursorContextData.setBlanco(false)
                       }}
                     >
                       Trabajos
@@ -376,6 +304,7 @@ const Layout = ({ children }) => {
                     <li
                       title="Info"
                       onMouseEnter={() => setCursorPointer("pointer")}
+                      onMouseLeave={() => setCursorPointer("default")}
                       onClick={() => {
                         setAcercaVisible(!acercaVisible)
                       }}
@@ -388,6 +317,7 @@ const Layout = ({ children }) => {
               <nav>
                 <div
                   className={s.galeria}
+                  onMouseEnter={e => onMouseMove(e, cursorContextData)}
                   onMouseMove={e => onMouseMove(e, cursorContextData)}
                 >
                   {/* <div
@@ -572,6 +502,9 @@ const Layout = ({ children }) => {
                   className={s.trabajos_content_fondo}
                   onClick={() => {
                     setTrabajosVisibles(!trabajosVisibles)
+                    cursorContextData.setBlanco(
+                      slides[activeSlide.current].imagen_oscura
+                    )
                   }}
                 />
                 <div className={s.trabajos_content}>
@@ -579,11 +512,18 @@ const Layout = ({ children }) => {
                     <ul>
                       {projects.map((project, index) => {
                         const number = (index + 1).toString().padStart(2, "0")
+                        const isCurrent =
+                          slides[activeSlide.current] &&
+                          project.slug ===
+                            slides[activeSlide.current].projectSlug
                         return (
                           <li key={index}>
                             <TransitionLink
                               to={`/${project.slug}`}
                               onClick={() => goToSlide(project.slideNumber)}
+                              onMouseEnter={() => setCursorPointer("pointer")}
+                              onMouseLeave={() => setCursorPointer("default")}
+                              className={isCurrent ? "active" : ""}
                             >
                               <span>{number}</span>{" "}
                               <strong>{project.title}</strong>
@@ -598,6 +538,9 @@ const Layout = ({ children }) => {
                   className={s.trabajos_cerrar}
                   onClick={() => {
                     setTrabajosVisibles(!trabajosVisibles)
+                    cursorContextData.setBlanco(
+                      slides[activeSlide.current].imagen_oscura
+                    )
                   }}
                 />
               </div>
@@ -616,49 +559,44 @@ const Layout = ({ children }) => {
                 <div className={s.acerca_content}>
                   <div className={s.acerca_textos}>
                     <p className={s.acerca_destacado}>
-                      Diseñamos conceptos, imágenes y narrativas capaces de
-                      definir estratégicamente una marca y permitir su
-                      activación fluida en los puntos de contacto relevantes:
-                      sede digital, entorno físico, producto, comunicación.
+                      Conceptos, imágenes y narrativa construyen tu marca. O la
+                      rompen. Somos un estudio de diseño con mentalidad
+                      estratégica que ayudamos a nuestros clientes a definir su
+                      ecosistema de marca y a darle vida a través del lenguaje
+                      visual y verbal.
                     </p>
                     <p>
-                      Donec aliquet urna tempus consequat molestie. Sed non est
-                      sed mauris consequat pellentesque. Aenean nulla felis,
-                      egestas at varius non, dictum at tortor. Donec ut
-                      sollicitudin nulla. Class aptent taciti sociosqu ad litora
-                      torquent per conubia nostra, per inceptos himenaeos. Donec
-                      ultrices, urna nec tristique facilisis, dolor nisl varius
-                      libero, quis ornare ipsum lacus id eros. Mauris hendrerit
-                      rhoncus orci vel sodales. Nulla facilisi. Etiam nunc
-                      magna, commodo luctus diam eu, aliquet volutpat sem.
-                      Praesent sem magna, fermentum vitae auctor vel, efficitur
-                      quis est. Sed quis nunc pulvinar, pulvinar ligula
-                      sollicitudin, mattis lorem. Sed et aliquet lectus. Etiam
-                      mattis metus vel magna aliquet, quis rhoncus sem interdum.
-                      Aliquam vehicula in est eu placerat. Nulla fermentum
-                      tortor ut tempus molestie. Mauris vel congue lacus. Ut
-                      lobortis sagittis semper. Vivamus sit amet sem at sapien
-                      tincidunt iaculis vel id justo. Duis luctus tortor id
-                      accumsan egestas. Proin sem turpis, vulputate at enim ac,
-                      luctus elementum velit. Nullam finibus tempus ultricies.
-                      Integer accumsan viverra pulvinar. Donec metus erat,
-                      dictum et semper eget, dapibus ac sapien. Nulla fermentum
-                      tortor ut tempus molestie. Mauris vel congue lacus. Ut
-                      lobortis sagittis semper. Vivamus sit amet sem at sapien
-                      tincidunt iaculis vel id justo.
+                      Desarrollamos identidades de marca. Nombramos empresas,
+                      productos y servicios. Creamos interfaces claras e
+                      intuitivas. Diseñamos packaging y etiquetado. Creamos
+                      tipografías a medida. Mejoramos la experiencia del cliente
+                      en los puntos de contacto relevantes. Creamos contenido y
+                      eventos capaces de proyectar lo que somos hacia dentro y
+                      hacia fuera, a la vez que involucran al público en el
+                      nuevo paradigma de la comunicación.
+                    </p>
+                    <p>
+                      Cuando todo se encuentra en un estado de cambio constante,
+                      la definición de marcos conceptuales alrededor de la idea
+                      de marca es lo que brinda estabilidad y permite el
+                      desarrollo de contenido estratégico que genere relevancia
+                      a medio y largo plazo. Para nosotros, el reto reside en el
+                      diseño aplicado al pensamiento y su traducción a
+                      diferentes entornos, contextos, momentos y audiencias.
                     </p>
                     <h6>Contacto</h6>
                     <p className={s.acerca_destacado}>
-                      Si quieres conocernos ponte en contacto en nuestro{" "}
+                      Somos flexibles cuando es posible y claros cuando es
+                      necesario. Si quieres conocernos, puedes escribirnos a{" "}
                       <a href="mailto:info@estudiopablogallego.com">email</a> o
-                      pásate por nuestro{" "}
+                      pasarte por nuestro{" "}
                       <a
                         href="https://goo.gl/maps/XeBBkwg1ykxEKomRA"
                         target="_blank"
                       >
                         estudio
                       </a>
-                      .
+                      . Creemos que será divertido.
                     </p>
                   </div>
                 </div>
