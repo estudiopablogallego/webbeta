@@ -421,9 +421,10 @@ const Layout = ({ children }) => {
                         >
                           <video
                             data-object-fit="cover"
-                            // autoPlay
+                            autoPlay
                             loop
                             muted
+                            ref={slides[i].vidRefHor}
                           >
                             <source
                               type="video/mp4"
@@ -443,9 +444,10 @@ const Layout = ({ children }) => {
                         >
                           <video
                             data-object-fit="cover"
-                            // autoPlay
+                            autoPlay
                             loop
                             muted
+                            ref={slides[i].vidRefVer}
                           >
                             <source
                               type="video/mp4"
