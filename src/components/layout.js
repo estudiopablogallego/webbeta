@@ -268,7 +268,6 @@ const Layout = ({ children }) => {
         projectSlug: window.location.pathname.substring(1),
       })
       if (loadedSlide) {
-        console.log("CARTANDODO")
         goToSlide(loadedSlide.index)
       } else {
         goToSlide(0)

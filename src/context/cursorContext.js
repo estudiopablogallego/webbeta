@@ -25,7 +25,7 @@ class CursorProvider extends React.Component {
   setCursor = cursorMode => {
     // console.log(this.state.cursor)
     if (this.state.cursor !== cursorMode) {
-      console.log("seting cursor", cursorMode)
+      // console.log("seting cursor", cursorMode)
       this.setState({ cursor: cursorMode })
     }
   }
