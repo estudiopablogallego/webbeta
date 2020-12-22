@@ -20,23 +20,24 @@ const Cursor = () => {
   }
 
   const cursorSpring = useSpring({
+    color: cursorContextData.blanco ? "#ffffff" : "#000000",
     linea:
       cursorContextData.cursor === "pointer"
-        ? "M144,11 L270,11"
+        ? "M135,50 L135,11"
         : cursorContextData.cursor === "right"
         ? "M0,11 L126,11"
         : cursorContextData.cursor === "left"
         ? "M144,11 L270,11"
-        : "M0,0 L100,0",
+        : "M165,41 L135,11",
 
-    triangulo:
+    transform:
       cursorContextData.cursor === "pointer"
-        ? 0
+        ? "translate3d(135px,11px,0) scale(1,1) rotate(-90deg)"
         : cursorContextData.cursor === "right"
-        ? 90
+        ? "translate3d(135px,11px,0) scale(1,1) rotate(0deg)"
         : cursorContextData.cursor === "left"
-        ? -90
-        : 0,
+        ? "translate3d(135px,11px,0) scale(1,1) rotate(180deg)"
+        : "translate3d(135px,11px,0) scale(1,1) rotate(-135deg)",
     // cursorContextData.cursor === "pointer"
     //   ? "M147,18.5 L147,3.5 L134,11"
     //   : cursorContextData.cursor === "right"
@@ -44,8 +45,6 @@ const Cursor = () => {
     //   : cursorContextData.cursor === "left"
     //   ? "M147,18.5 L147,3.5 L134,11"
     //   : "M0,0 L100,0 L100,0",
-
-    color: cursorContextData.blanco ? "#ffffff" : "#000000",
   })
 
   const cursorClasses = ""
@@ -84,8 +83,8 @@ const Cursor = () => {
         >
           <a.svg
             width="270px"
-            height="22px"
-            viewBox="0 0 270 22"
+            height="50px"
+            viewBox="0 0 270 50"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -97,7 +96,13 @@ const Cursor = () => {
               fill="none"
               fillRule="evenodd"
             >
-              <a.path d="M0,11 L126,11" fill={cursorSpring.color} />
+              <a.path
+                d="M-7.5,-7.5 L7.5,0 L-7.5,7.5"
+                style={{
+                  transform: cursorSpring.transform,
+                }}
+                fill={cursorSpring.color}
+              />
               <a.path d={cursorSpring.linea} stroke={cursorSpring.color} />
             </g>
           </a.svg>
