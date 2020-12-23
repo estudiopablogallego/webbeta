@@ -18,7 +18,7 @@ class CursorProvider extends React.Component {
   setBlanco = blanco => {
     if (this.state.blanco !== blanco) {
       this.setState({ blanco: blanco })
-      console.log("seting cursor blanco: ", blanco)
+      //onsole.log("seting cursor blanco: ", blanco)
     }
   }
 
