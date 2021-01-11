@@ -505,7 +505,7 @@ const Layout = allProps => {
                         >
                           <video
                             data-object-fit="cover"
-                            // autoPlay
+                            autoPlay
                             playsInline
                             loop
                             muted
