@@ -206,20 +206,26 @@ const Layout = allProps => {
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
     cursorContextData.setBlanco(slides[activeSlide.current].imagen_oscura)
     // setIsLightboxOn(true)
-    videoHorRefs.current.forEach((videoEl, i) => {
-      if(activeSlide.current == i){
-        videoEl.play();
+    if(typeof window !== "undefined"){
+      if(window.innerWidth >= window.innerHeight){
+        videoHorRefs.current.forEach((videoEl, i) => {
+          if(activeSlide.current == i){
+            videoEl.play();
+          } else {
+            videoEl.pause();
+          }
+        })
       } else {
-        videoEl.pause();
+        videoVerRefs.current.forEach((videoEl, i) => {
+          if(activeSlide.current == i){
+            videoEl.play();
+          } else {
+            videoEl.pause();
+          }
+        })
       }
-    })
-    videoVerRefs.current.forEach((videoEl, i) => {
-      if(activeSlide.current == i){
-        videoEl.play();
-      } else {
-        videoEl.pause();
-      }
-    })
+    }
+      
     
   }
 
@@ -475,7 +481,7 @@ const Layout = allProps => {
                         >
                           <video
                             data-object-fit="cover"
-                            autoPlay
+                            // autoPlay
                             loop
                             muted
                             ref={el => videoHorRefs.current[i] = el }
@@ -498,7 +504,7 @@ const Layout = allProps => {
                         >
                           <video
                             data-object-fit="cover"
-                            autoPlay
+                            // autoPlay
                             loop
                             muted
                             ref={el => videoVerRefs.current[i] = el }
