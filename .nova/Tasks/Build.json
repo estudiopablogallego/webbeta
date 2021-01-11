@@ -2,7 +2,7 @@
   "actions" : {
     "build" : {
       "enabled" : true,
-      "script" : "#!\/bin\/sh\ngatsby clean & gatsby build"
+      "script" : "#!\/bin\/sh\ngatsby clean && gatsby build && gatsby serve"
     },
     "clean" : {
       "enabled" : true,
