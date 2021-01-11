@@ -482,6 +482,7 @@ const Layout = allProps => {
                           <video
                             data-object-fit="cover"
                             // autoPlay
+                            playsInline
                             loop
                             muted
                             ref={el => videoHorRefs.current[i] = el }
@@ -505,6 +506,7 @@ const Layout = allProps => {
                           <video
                             data-object-fit="cover"
                             // autoPlay
+                            playsInline
                             loop
                             muted
                             ref={el => videoVerRefs.current[i] = el }
