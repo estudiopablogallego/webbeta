@@ -118,7 +118,9 @@ const Layout = allProps => {
     } = dragProps
     if (typeof window !== "undefined") {
       if (!down && Math.abs(movement[0]) > window.innerWidth / 12) {
-        if (!canceled)
+        console.log("what!")
+        if (!canceled){
+          
           cancel(
             (activeSlide.current = _.clamp(
               activeSlide.current + _.clamp(movement[0] * -1, -1, 1),
@@ -126,8 +128,11 @@ const Layout = allProps => {
               slides.length - 1
             ))
           )
+          onClipUpdate()
+        }
       }
       if (!down && Math.abs(movement[0]) < 2) {
+        console.log("Moviendo!")
         const x = dragProps.values[0]
         if (x > window.innerWidth * 0.5) {
           onClickRight()
@@ -170,6 +175,8 @@ const Layout = allProps => {
     updateUrlName()
   }
   const onClickRight = () => {
+    
+console.log("onClickRight")
     activeSlide.current = _.clamp(activeSlide.current + 1, 0, slides.length - 1)
     onClipUpdate()
     updateUrlName()
@@ -192,6 +199,8 @@ const Layout = allProps => {
 
   const onClipUpdate = visibleAll => {
     //onsole.log("onClipUpdate")
+    console.log("UPADTARIND")
+    playOrStopVideos()
     setSpringProps(i => {
       if (!visibleAll) {
         if (i < activeSlide.current - 1 || i > activeSlide.current + 3)
@@ -206,25 +215,7 @@ const Layout = allProps => {
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
     cursorContextData.setBlanco(slides[activeSlide.current].imagen_oscura)
     // setIsLightboxOn(true)
-    if(typeof window !== "undefined"){
-      if(window.innerWidth >= window.innerHeight){
-        videoHorRefs.current.forEach((videoEl, i) => {
-          if(activeSlide.current == i){
-            videoEl.play();
-          } else {
-            videoEl.pause();
-          }
-        })
-      } else {
-        videoVerRefs.current.forEach((videoEl, i) => {
-          if(activeSlide.current == i){
-            videoEl.play();
-          } else {
-            videoEl.pause();
-          }
-        })
-      }
-    }
+    
       
     
   }
@@ -264,6 +255,28 @@ const Layout = allProps => {
     handleLinkHoverEvents()
     return () => removeEventListeners()
   }, [])
+
+  const playOrStopVideos = () => {
+    if(typeof window !== "undefined"){
+      if(window.innerWidth >= window.innerHeight){
+        videoHorRefs.current.forEach((videoEl, i) => {
+          if(activeSlide.current == i){
+            videoEl.play();
+          } else {
+            videoEl.pause();
+          }
+        })
+      } else {
+        videoVerRefs.current.forEach((videoEl, i) => {
+          if(activeSlide.current == i){
+            videoEl.play();
+          } else {
+            videoEl.pause();
+          }
+        })
+      }
+    }
+  }
 
   const addEventListeners = cursorContextData => {
     // document.addEventListener("mousemove", e =>
