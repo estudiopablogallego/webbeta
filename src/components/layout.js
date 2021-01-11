@@ -25,7 +25,10 @@ import s from "./layout.module.scss"
 import Cursor from "./cursor"
 import CursorContext from "../context/cursorContext"
 
-const Layout = ({ children }) => {
+const Layout = allProps => {
+  //onsole.log(allProps)
+  const { children, location } = allProps
+  //onsole.log(allProps)
   const data = useStaticQuery(graphql`
     query myprojects {
       processwire {
@@ -86,11 +89,21 @@ const Layout = ({ children }) => {
 
   const activeSlide = useRef(-1)
 
-  const [springProps, setSpringProps] = useSprings(slides.length, i => ({
-    x: typeof window !== "undefined" ? i * window.innerWidth : 0,
-    sc: 1,
-    display: "block",
-  }))
+  const [springProps, setSpringProps] = useSprings(slides.length, i => {
+    let display = "block"
+    if (i < activeSlide.current - 1 || i > activeSlide.current + 3) {
+      display = "none"
+    }
+
+    const x =
+      typeof window !== "undefined"
+        ? (i - activeSlide.current) * window.innerWidth
+        : 0
+    const sc = 1
+    //onsole.log("x")
+    //onsole.log(x)
+    return { x, sc, display: display }
+  })
   const bind = useDrag(dragProps => {
     //onsole.log(dragProps)
     const { movement, canceled } = dragProps
@@ -133,6 +146,8 @@ const Layout = ({ children }) => {
             (down ? movement[0] : 0)
           : null
       const sc = 1
+      //onsole.log("x")
+      //onsole.log(x)
       return { x, sc, display: "block" }
     })
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
@@ -165,12 +180,15 @@ const Layout = ({ children }) => {
   }
 
   const goToSlide = n => {
+    //onsole.log("goToSlide")
+    //onsole.log(n)
     activeSlide.current = n
-    setTrabajosVisibles(false)
-    onClipUpdate(true)
+    if (typeof window !== "undefined") setTrabajosVisibles(false)
+    if (typeof window !== "undefined") onClipUpdate(true)
   }
 
   const onClipUpdate = visibleAll => {
+    //onsole.log("onClipUpdate")
     setSpringProps(i => {
       if (!visibleAll) {
         if (i < activeSlide.current - 1 || i > activeSlide.current + 3)
@@ -178,6 +196,8 @@ const Layout = ({ children }) => {
       }
       const x = (i - activeSlide.current) * window.innerWidth
       const sc = 1
+      //onsole.log("clipupdate x")
+      //onsole.log(x)
       return { x, sc, display: "block" }
     })
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
@@ -264,9 +284,12 @@ const Layout = ({ children }) => {
   useLayoutEffect(() => {
     if (!lanzadaPrimeraSlide.current) {
       lanzadaPrimeraSlide.current = true
+      //onsole.log("Lanzando la primera slide")
+      //onsole.log(window.location.pathname)
       const loadedSlide = _.find(slides, {
         projectSlug: window.location.pathname.substring(1),
       })
+
       if (loadedSlide) {
         goToSlide(loadedSlide.index)
       } else {
@@ -275,6 +298,20 @@ const Layout = ({ children }) => {
       return
     }
   })
+  // // Si es SSR oculta el resto de slides
+  // if (typeof window === "undefined") {
+  //   onsole.log("allProps")
+  //   onsole.log(allProps)
+  //   const pathname = location ? location.pathname : "/_"
+  //   const loadedSlide = _.find(slides, {
+  //     projectSlug: pathname.substring(1),
+  //   })
+  //   if (loadedSlide) {
+  //     goToSlide(loadedSlide.index)
+  //   } else {
+  //     goToSlide(0)
+  //   }
+  // }
 
   return (
     <CursorContext.Consumer>
