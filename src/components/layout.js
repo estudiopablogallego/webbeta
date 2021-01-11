@@ -88,6 +88,8 @@ const Layout = allProps => {
   const [fondoOscuro, setFondoOscuro] = useState(slides[0].imagen_oscura)
 
   const activeSlide = useRef(-1)
+  const videoHorRefs = useRef([])
+  const videoVerRefs = useRef([])
 
   const [springProps, setSpringProps] = useSprings(slides.length, i => {
     let display = "block"
@@ -136,8 +138,9 @@ const Layout = allProps => {
     }
 
     setSpringProps(i => {
+      let display = "block"
       if (i < activeSlide.current - 1 || i > activeSlide.current + 3) {
-        return { display: "none" }
+        display = "none"
       }
 
       const x =
@@ -148,7 +151,7 @@ const Layout = allProps => {
       const sc = 1
       //onsole.log("x")
       //onsole.log(x)
-      return { x, sc, display: "block" }
+      return { x, sc, display: display }
     })
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
     cursorContextData.setBlanco(slides[activeSlide.current].imagen_oscura)
@@ -203,6 +206,21 @@ const Layout = allProps => {
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
     cursorContextData.setBlanco(slides[activeSlide.current].imagen_oscura)
     // setIsLightboxOn(true)
+    videoHorRefs.current.forEach((videoEl, i) => {
+      if(activeSlide.current == i){
+        videoEl.play();
+      } else {
+        videoEl.pause();
+      }
+    })
+    videoVerRefs.current.forEach((videoEl, i) => {
+      if(activeSlide.current == i){
+        videoEl.play();
+      } else {
+        videoEl.pause();
+      }
+    })
+    
   }
 
   const setCursorPointer = modo => {
@@ -460,7 +478,7 @@ const Layout = allProps => {
                             autoPlay
                             loop
                             muted
-                            ref={slides[i].vidRefHor}
+                            ref={el => videoHorRefs.current[i] = el }
                           >
                             <source
                               type="video/mp4"
@@ -480,10 +498,10 @@ const Layout = allProps => {
                         >
                           <video
                             data-object-fit="cover"
-                            autoPlay
+                            // autoPlay
                             loop
                             muted
-                            ref={slides[i].vidRefVer}
+                            ref={el => videoVerRefs.current[i] = el }
                           >
                             <source
                               type="video/mp4"

@@ -10,7 +10,7 @@
     },
     "run" : {
       "enabled" : true,
-      "script" : "#!\/bin\/sh\ngatsby clean & gatsby develop"
+      "script" : "#!\/bin\/sh\ngatsby clean && gatsby develop -H 0.0.0.0"
     }
   },
   "identifier" : "E0725C40-B0A6-4312-8E6F-27095778C8D8",
