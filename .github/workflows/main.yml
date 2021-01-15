@@ -6,6 +6,7 @@ on:
       - master #on push to the master branch do the jobs below
   workflow_dispatch:
   repository_dispatch:
+    types: [build-and-deploy]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
