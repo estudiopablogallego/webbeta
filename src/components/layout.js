@@ -119,8 +119,7 @@ const Layout = allProps => {
     if (typeof window !== "undefined") {
       if (!down && Math.abs(movement[0]) > window.innerWidth / 12) {
         console.log("what!")
-        if (!canceled){
-          
+        if (!canceled) {
           cancel(
             (activeSlide.current = _.clamp(
               activeSlide.current + _.clamp(movement[0] * -1, -1, 1),
@@ -175,8 +174,7 @@ const Layout = allProps => {
     updateUrlName()
   }
   const onClickRight = () => {
-    
-console.log("onClickRight")
+    console.log("onClickRight")
     activeSlide.current = _.clamp(activeSlide.current + 1, 0, slides.length - 1)
     onClipUpdate()
     updateUrlName()
@@ -215,9 +213,6 @@ console.log("onClickRight")
     setFondoOscuro(slides[activeSlide.current].imagen_oscura)
     cursorContextData.setBlanco(slides[activeSlide.current].imagen_oscura)
     // setIsLightboxOn(true)
-    
-      
-    
   }
 
   const setCursorPointer = modo => {
@@ -257,21 +252,21 @@ console.log("onClickRight")
   }, [])
 
   const playOrStopVideos = () => {
-    if(typeof window !== "undefined"){
-      if(window.innerWidth >= window.innerHeight){
+    if (typeof window !== "undefined") {
+      if (window.innerWidth >= window.innerHeight) {
         videoHorRefs.current.forEach((videoEl, i) => {
-          if(activeSlide.current == i){
-            videoEl.play();
+          if (activeSlide.current == i) {
+            videoEl.play()
           } else {
-            videoEl.pause();
+            videoEl.pause()
           }
         })
       } else {
         videoVerRefs.current.forEach((videoEl, i) => {
-          if(activeSlide.current == i){
-            videoEl.play();
+          if (activeSlide.current == i) {
+            videoEl.play()
           } else {
-            videoEl.pause();
+            videoEl.pause()
           }
         })
       }
@@ -498,7 +493,7 @@ console.log("onClickRight")
                             playsInline
                             loop
                             muted
-                            ref={el => videoHorRefs.current[i] = el }
+                            ref={el => (videoHorRefs.current[i] = el)}
                           >
                             <source
                               type="video/mp4"
@@ -522,7 +517,7 @@ console.log("onClickRight")
                             playsInline
                             loop
                             muted
-                            ref={el => videoVerRefs.current[i] = el }
+                            ref={el => (videoVerRefs.current[i] = el)}
                           >
                             <source
                               type="video/mp4"
@@ -531,18 +526,20 @@ console.log("onClickRight")
                           </video>
                         </div>
                       ) : null}
-                      <div className={s.text_box}>
-                        {slides[i].projectTitle ? (
-                          <div className={s.projectTitle}>
-                            {slides[i].projectTitle}
-                          </div>
-                        ) : null}
-                        {slides[i].projectTexto ? (
-                          <div className={s.projectTexto}>
-                            {slides[i].projectTexto}
-                          </div>
-                        ) : null}
-                      </div>
+                      {slides[i].isFirstPage ? (
+                        <div className={s.text_box}>
+                          {slides[i].projectTitle ? (
+                            <div className={s.projectTitle}>
+                              {slides[i].projectTitle}
+                            </div>
+                          ) : null}
+                          {slides[i].projectTexto ? (
+                            <div className={s.projectTexto}>
+                              {slides[i].projectTexto}
+                            </div>
+                          ) : null}
+                        </div>
+                      ) : null}
                     </a.div>
                   ))}
                 </div>
