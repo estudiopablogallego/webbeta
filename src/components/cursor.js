@@ -4,7 +4,7 @@ import { useSprings, useSpring, animated as a } from "react-spring"
 // import { interpolate } from 'flubber'
 import CursorContext from "../context/cursorContext"
 
-const Cursor = () => {
+const Cursor = ({ hidden }) => {
   const cursorContextData = useContext(CursorContext)
   const isMobile = () => {
     const ua = navigator.userAgent
@@ -76,7 +76,7 @@ const Cursor = () => {
     <CursorContext.Consumer>
       {cursor => (
         <div
-          className={`cursor_contenedor ${s.container}`}
+          className={`cursor_contenedor ${s.container} ${hidden ? s.cursor_no_visible : ""}`}
           // onClick={(e)=>{return false}}
           // onDrag={(e)=>{return false}}
           style={{ left: `${position.x}px`, top: `${position.y}px` }}

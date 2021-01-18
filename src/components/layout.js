@@ -702,7 +702,7 @@ const Layout = allProps => {
               </div>
               <footer></footer>
             </div>
-            <Cursor />
+            <Cursor hidden={hidden}/>
           </>
         )
       }}

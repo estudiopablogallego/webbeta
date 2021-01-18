@@ -1,6 +1,8 @@
 @import "../styles/shared";
 .container {
   display: none;
+  opacity: 1;
+  transition: opacity 0.3s;
   @media #{$media-tablet-portrait} {
     display: block;
     position: fixed;
@@ -23,5 +25,8 @@
     //     transform: translate(-100px, 0px);
     //     background: none;
     // }
+  }
+  &.cursor_no_visible{
+    opacity: 0;
   }
 }
