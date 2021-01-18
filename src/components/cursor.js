@@ -76,7 +76,7 @@ const Cursor = () => {
     <CursorContext.Consumer>
       {cursor => (
         <div
-          className={s.container}
+          className={`cursor_contenedor ${s.container}`}
           // onClick={(e)=>{return false}}
           // onDrag={(e)=>{return false}}
           style={{ left: `${position.x}px`, top: `${position.y}px` }}

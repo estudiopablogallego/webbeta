@@ -48,3 +48,10 @@ a:active,
 a:hover {
   outline-width: 0;
 }
+
+body.touch-device .cursor_contenedor{
+  display: none!important;
+}
+body.touch-device *{
+  cursor: default!important;
+}

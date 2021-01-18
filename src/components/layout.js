@@ -14,6 +14,9 @@ import React, {
 import { useStaticQuery, graphql, navigate } from "gatsby"
 import TransitionLink from "gatsby-plugin-transition-link"
 
+import { useWindowSize } from "./helpers/useWindowSize"
+
+
 import Img from "gatsby-image/withIEPolyfill"
 import { useSprings, useSpring, animated as a } from "react-spring"
 import { useDrag } from "react-use-gesture"
@@ -59,7 +62,10 @@ const Layout = allProps => {
       }
     }
   `)
-  ////
+  
+  const windowSize = useWindowSize()
+  useEffect(() => onClipUpdate(), [windowSize]);
+//onsole.log(windowSize)
   //SLIDES
   ////
 
@@ -99,7 +105,7 @@ const Layout = allProps => {
 
     const x =
       typeof window !== "undefined"
-        ? (i - activeSlide.current) * window.innerWidth
+        ? (i - activeSlide.current) * windowSize
         : 0
     const sc = 1
     //onsole.log("x")
@@ -117,8 +123,8 @@ const Layout = allProps => {
       cancel,
     } = dragProps
     if (typeof window !== "undefined") {
-      if (!down && Math.abs(movement[0]) > window.innerWidth / 12) {
-        console.log("what!")
+      if (!down && Math.abs(movement[0]) > windowSize / 12) {
+        //onsole.log("what!")
         if (!canceled) {
           cancel(
             (activeSlide.current = _.clamp(
@@ -131,9 +137,9 @@ const Layout = allProps => {
         }
       }
       if (!down && Math.abs(movement[0]) < 2) {
-        console.log("Moviendo!")
+        //onsole.log("Moviendo!")
         const x = dragProps.values[0]
-        if (x > window.innerWidth * 0.5) {
+        if (x > windowSize * 0.5) {
           onClickRight()
         } else {
           onClickLeft()
@@ -149,7 +155,7 @@ const Layout = allProps => {
 
       const x =
         typeof window !== "undefined"
-          ? (i - activeSlide.current) * window.innerWidth +
+          ? (i - activeSlide.current) * windowSize +
             (down ? movement[0] : 0)
           : null
       const sc = 1
@@ -174,7 +180,7 @@ const Layout = allProps => {
     updateUrlName()
   }
   const onClickRight = () => {
-    console.log("onClickRight")
+    //onsole.log("onClickRight")
     activeSlide.current = _.clamp(activeSlide.current + 1, 0, slides.length - 1)
     onClipUpdate()
     updateUrlName()
@@ -197,14 +203,14 @@ const Layout = allProps => {
 
   const onClipUpdate = visibleAll => {
     //onsole.log("onClipUpdate")
-    console.log("UPADTARIND")
+    //onsole.log("UPADTARIND")
     playOrStopVideos()
     setSpringProps(i => {
       if (!visibleAll) {
         if (i < activeSlide.current - 1 || i > activeSlide.current + 3)
           return { display: "none" }
       }
-      const x = (i - activeSlide.current) * window.innerWidth
+      const x = (i - activeSlide.current) * windowSize
       const sc = 1
       //onsole.log("clipupdate x")
       //onsole.log(x)
@@ -238,10 +244,10 @@ const Layout = allProps => {
   }
 
   const onMouseMove = (e, cursorContextData) => {
-    if (e.clientX >= window.innerWidth * 0.5) {
+    if (e.clientX >= windowSize * 0.5) {
       setCursorPointer("right")
     }
-    if (e.clientX < window.innerWidth * 0.5) {
+    if (e.clientX < windowSize * 0.5) {
       setCursorPointer("left")
     }
   }
@@ -251,9 +257,11 @@ const Layout = allProps => {
     return () => removeEventListeners()
   }, [])
 
+  
+
   const playOrStopVideos = () => {
     if (typeof window !== "undefined") {
-      if (window.innerWidth >= window.innerHeight) {
+      if (windowSize >= window.innerHeight) {
         videoHorRefs.current.forEach((videoEl, i) => {
           if (activeSlide.current == i) {
             videoEl.play()
@@ -344,7 +352,11 @@ const Layout = allProps => {
   //     goToSlide(0)
   //   }
   // }
-
+  
+  
+  //OnResize
+  
+  
   return (
     <CursorContext.Consumer>
       {cursor => {
