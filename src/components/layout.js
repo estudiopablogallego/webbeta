@@ -104,7 +104,7 @@ const Layout = allProps => {
     const sc = 1
     //onsole.log("x")
     //onsole.log(x)
-    return { x, sc, display: display }
+    return { x, sc, display: display, config: { mass: 3, tension: 300, friction: 100 } }
   })
   const bind = useDrag(dragProps => {
     //onsole.log(dragProps)

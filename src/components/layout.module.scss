@@ -570,7 +570,7 @@
   z-index: 20;
 
   transform: translateX(110%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.7s ease-in-out;
   
   *{
     cursor: none;
@@ -666,7 +666,7 @@
     top: 50%;
     left: 0.9rem;
     background-color: black;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.7s ease-in-out;
   }
   &::before {
     transform: rotate(45deg);
@@ -693,7 +693,7 @@
   z-index: 20;
 
   transform: translateX(110%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.7s ease-in-out;
   *{
     cursor: none;
   }
@@ -798,7 +798,7 @@
     top: 50%;
     left: 0.9rem;
     background-color: black;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.7s ease-in-out;
   }
   &::before {
     transform: rotate(45deg);
