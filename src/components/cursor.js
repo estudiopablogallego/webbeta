@@ -23,7 +23,7 @@ const Cursor = () => {
     color: cursorContextData.blanco ? "#ffffff" : "#000000",
     linea:
       cursorContextData.cursor === "pointer"
-        ? "M135,50 L135,11"
+        ? "M135,30 L135,11"
         : cursorContextData.cursor === "right"
         ? "M0,11 L126,11"
         : cursorContextData.cursor === "left"
@@ -32,11 +32,11 @@ const Cursor = () => {
 
     transform:
       cursorContextData.cursor === "pointer"
-        ? "translate3d(135px,11px,0) scale(1,1) rotate(-90deg)"
+        ? "translate3d(135px,15px,0) scale(2,2) rotate(-90deg)"
         : cursorContextData.cursor === "right"
-        ? "translate3d(135px,11px,0) scale(1,1) rotate(0deg)"
+        ? "translate3d(132px,11px,0) scale(1,1) rotate(0deg)"
         : cursorContextData.cursor === "left"
-        ? "translate3d(135px,11px,0) scale(1,1) rotate(180deg)"
+        ? "translate3d(138px,11px,0) scale(1,1) rotate(180deg)"
         : "translate3d(135px,11px,0) scale(1,1) rotate(-135deg)",
     // cursorContextData.cursor === "pointer"
     //   ? "M147,18.5 L147,3.5 L134,11"
