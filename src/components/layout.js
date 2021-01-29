@@ -284,16 +284,20 @@ const Layout = allProps => {
     // document.addEventListener("mousemove", e =>
     //   onMouseMove(e, cursorContextData)
     // )
-    document.addEventListener("mouseenter", onMouseEnter)
-    document.addEventListener("mouseleave", onMouseLeave)
+    // document.addEventListener("mouseenter", onMouseEnter)
+    document.addEventListener("mouseover", onMouseEnter)
+    // document.addEventListener("mouseleave", onMouseLeave)
+    document.addEventListener("mouseout", onMouseLeave)
     document.addEventListener("mousedown", onMouseDown)
     document.addEventListener("mouseup", onMouseUp)
   }
 
   const removeEventListeners = () => {
     document.removeEventListener("mousemove", onMouseMove)
-    document.removeEventListener("mouseenter", onMouseEnter)
-    document.removeEventListener("mouseleave", onMouseLeave)
+    document.removeEventListener("mouseover", onMouseEnter)
+    // document.removeEventListener("mouseenter", onMouseEnter)
+    // document.removeEventListener("mouseleave", onMouseLeave)
+    document.removeEventListener("mouseout", onMouseLeave)
     document.removeEventListener("mousedown", onMouseDown)
     document.removeEventListener("mouseup", onMouseUp)
   }
@@ -307,6 +311,7 @@ const Layout = allProps => {
   }
 
   const onMouseLeave = () => {
+    console.log("leave")
     setHidden(true)
   }
 
