@@ -14,8 +14,7 @@ import React, {
 import { useStaticQuery, graphql, navigate } from "gatsby"
 import TransitionLink from "gatsby-plugin-transition-link"
 
-import { useWindowSize } from "./helpers/useWindowSize"
-
+import { useWindowSize } from "./helpers/useWindowSize"
 
 import Img from "gatsby-image/withIEPolyfill"
 import { useSprings, useSpring, animated as a } from "react-spring"
@@ -62,10 +61,10 @@ const Layout = allProps => {
       }
     }
   `)
-  
+
   const windowSize = useWindowSize()
-  useEffect(() => onClipUpdate(), [windowSize]);
-//onsole.log(windowSize)
+  useEffect(() => onClipUpdate(), [windowSize])
+  //onsole.log(windowSize)
   //SLIDES
   ////
 
@@ -104,13 +103,16 @@ const Layout = allProps => {
     }
 
     const x =
-      typeof window !== "undefined"
-        ? (i - activeSlide.current) * windowSize
-        : 0
+      typeof window !== "undefined" ? (i - activeSlide.current) * windowSize : 0
     const sc = 1
     //onsole.log("x")
     //onsole.log(x)
-    return { x, sc, display: display, config: { mass: 3, tension: 300, friction: 100 } }
+    return {
+      x,
+      sc,
+      display: display,
+      config: { mass: 3, tension: 300, friction: 100 },
+    }
   })
   const bind = useDrag(dragProps => {
     //onsole.log(dragProps)
@@ -155,8 +157,7 @@ const Layout = allProps => {
 
       const x =
         typeof window !== "undefined"
-          ? (i - activeSlide.current) * windowSize +
-            (down ? movement[0] : 0)
+          ? (i - activeSlide.current) * windowSize + (down ? movement[0] : 0)
           : null
       const sc = 1
       //onsole.log("x")
@@ -257,8 +258,6 @@ const Layout = allProps => {
     return () => removeEventListeners()
   }, [])
 
-  
-
   const playOrStopVideos = () => {
     if (typeof window !== "undefined") {
       if (windowSize >= window.innerHeight) {
@@ -352,11 +351,9 @@ const Layout = allProps => {
   //     goToSlide(0)
   //   }
   // }
-  
-  
+
   //OnResize
-  
-  
+
   return (
     <CursorContext.Consumer>
       {cursor => {
@@ -400,24 +397,6 @@ const Layout = allProps => {
                   onMouseEnter={e => onMouseMove(e, cursorContextData)}
                   onMouseMove={e => onMouseMove(e, cursorContextData)}
                 >
-                  {/* <div
-                className={s.left}
-                onClick={onClickLeft}
-                >
-                        <svg width="10" height="16" viewBox="19 0 10 20" fill="none">
-                  <path d="M27.63 9.37L18 19" stroke="#ffffff" strokeWidth="1.5"/>
-                  <path d="M27.62 10.62L18 1" stroke="#ffffff" strokeWidth="1.5"/>
-                </svg>
-              </div> */}
-                  {/* <div
-                className={s.right}
-                onClick={onClickRight}
-                >
-                <svg width="10" height="16" viewBox="19 0 10 20" fill="none">
-                  <path d="M27.63 9.37L18 19" stroke="#ffffff" strokeWidth="1.5"/>
-                  <path d="M27.62 10.62L18 1" stroke="#ffffff" strokeWidth="1.5"/>
-                </svg>
-              </div> */}
                   {springProps.map(({ x, display, sc }, i) => (
                     <a.div
                       className={`${s.slideImage} ${
@@ -555,29 +534,6 @@ const Layout = allProps => {
                     </a.div>
                   ))}
                 </div>
-                {/* { projects.map(project=>(
-            <div key={project.pwid}>
-              <h1>{project.title}</h1>
-              <div>
-              { project.media.map(mediaItem=>(
-                <div key={mediaItem.pwid}>
-                  <Img
-                    fluid={
-                      {
-                        aspectRatio: 1.5,
-                        base64: mediaItem.beta_imagen_horizontal_base64,
-                        sizes: "(max-width: 880px) 100vw, 880px",
-                        src: `${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/800/`,
-                        srcSet: `${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/220/ 220w, ${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/440/ 440w, ${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/880/ 880w, ${imgPath}/${mediaItem.pwid}/beta_imagen_horizontal/980/ 980w`
-                      }
-                    }
-                  />
-                </div>
-              ))
-              }
-              </div>
-            </div>
-          ))} */}
               </nav>
               <div
                 className={`${s.trabajos_container} ${
@@ -702,7 +658,7 @@ const Layout = allProps => {
               </div>
               <footer></footer>
             </div>
-            <Cursor hidden={hidden}/>
+            <Cursor hidden={hidden} />
           </>
         )
       }}
