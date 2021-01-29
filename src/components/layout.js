@@ -389,6 +389,7 @@ const Layout = allProps => {
                       onMouseLeave={() => setCursorPointer("default")}
                       onClick={() => {
                         setAcercaVisible(!acercaVisible)
+                        cursorContextData.setBlanco(false)
                       }}
                     >
                       Info
@@ -605,6 +606,9 @@ const Layout = allProps => {
                   className={s.acerca_content_fondo}
                   onClick={() => {
                     setAcercaVisible(!acercaVisible)
+                    cursorContextData.setBlanco(
+                      slides[activeSlide.current].imagen_oscura
+                    )
                   }}
                 />
                 <div className={s.acerca_content}>
@@ -658,6 +662,9 @@ const Layout = allProps => {
                   onMouseLeave={() => setCursorPointer("default")}
                   onClick={() => {
                     setAcercaVisible(!acercaVisible)
+                    cursorContextData.setBlanco(
+                      slides[activeSlide.current].imagen_oscura
+                    )
                   }}
                 />
               </div>

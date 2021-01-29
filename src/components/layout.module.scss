@@ -81,7 +81,7 @@
         border: 1px solid #000;
         border-radius: 15px;
         color: #000;
-        transition: color $transitionspeed, border $transitionspeed;
+        // transition: color $transitionspeed, border $transitionspeed;
         cursor: none;
         @media #{$media-tablet-portrait} {
           margin: 0 0 0 2.4rem;
