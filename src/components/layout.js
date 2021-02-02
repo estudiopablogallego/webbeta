@@ -560,28 +560,38 @@ const Layout = allProps => {
                         </div>
                       ) : null}
                       {slides[i].isFirstPage ? (
-                        <a.div
-                          className={s.text_box}
-                          style={{
-                            transform: x.interpolate(
-                              x => `translate3d(${x * 0.3}px,0,0)`
-                            ),
-                            opacity: x.interpolate(
-                              x => 1 - x / (windowWidth * 0.35)
-                            ),
-                          }}
-                        >
+                        <div className={s.text_box}>
                           {slides[i].projectTitle ? (
-                            <div className={s.projectTitle}>
+                            <a.div
+                              className={s.projectTitle}
+                              style={{
+                                transform: x.interpolate(
+                                  x => `translate3d(${x * 0.3}px,0,0)`
+                                ),
+                                opacity: x.interpolate(
+                                  x => 1.5 - x / (windowWidth * 0.35)
+                                ),
+                              }}
+                            >
                               {slides[i].projectTitle}
-                            </div>
+                            </a.div>
                           ) : null}
                           {slides[i].projectTexto ? (
-                            <div className={s.projectTexto}>
+                            <a.div
+                              className={s.projectTexto}
+                              style={{
+                                transform: x.interpolate(
+                                  x => `translate3d(${x * 0.4}px,0,0)`
+                                ),
+                                opacity: x.interpolate(
+                                  x => 1 - x / (windowWidth * 0.35)
+                                ),
+                              }}
+                            >
                               {slides[i].projectTexto}
-                            </div>
+                            </a.div>
                           ) : null}
-                        </a.div>
+                        </div>
                       ) : null}
                     </a.div>
                   ))}
