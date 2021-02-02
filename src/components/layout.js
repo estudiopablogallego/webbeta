@@ -28,6 +28,20 @@ import Cursor from "./cursor"
 import CursorContext from "../context/cursorContext"
 
 const Layout = allProps => {
+  document.addEventListener("gesturestart", function (e) {
+    e.preventDefault()
+    document.body.style.zoom = 0.99
+  })
+
+  document.addEventListener("gesturechange", function (e) {
+    e.preventDefault()
+
+    document.body.style.zoom = 0.99
+  })
+  document.addEventListener("gestureend", function (e) {
+    e.preventDefault()
+    document.body.style.zoom = 1
+  })
   const { children, location } = allProps
   const data = useStaticQuery(graphql`
     query myprojects {
