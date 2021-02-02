@@ -558,7 +558,17 @@ const Layout = allProps => {
                         </div>
                       ) : null}
                       {slides[i].isFirstPage ? (
-                        <div className={s.text_box}>
+                        <a.div
+                          className={s.text_box}
+                          style={{
+                            transform: x.interpolate(
+                              x => `translate3d(${x * 0.3}px,0,0)`
+                            ),
+                            opacity: x.interpolate(
+                              x => 1 - x / (window.innerWidth * 0.35)
+                            ),
+                          }}
+                        >
                           {slides[i].projectTitle ? (
                             <div className={s.projectTitle}>
                               {slides[i].projectTitle}
@@ -569,7 +579,7 @@ const Layout = allProps => {
                               {slides[i].projectTexto}
                             </div>
                           ) : null}
-                        </div>
+                        </a.div>
                       ) : null}
                     </a.div>
                   ))}

@@ -3,11 +3,13 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-size: 10px;
+  overflow: hidden;
 }
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 article,
 aside,
@@ -49,9 +51,9 @@ a:hover {
   outline-width: 0;
 }
 
-body.touch-device .cursor_contenedor{
-  display: none!important;
+body.touch-device .cursor_contenedor {
+  display: none !important;
 }
-body.touch-device *{
-  cursor: default!important;
+body.touch-device * {
+  cursor: default !important;
 }
