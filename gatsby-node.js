@@ -30,7 +30,7 @@ exports.createPages = async ({ graphql, actions }) => {
   //     page_url
   //     title
   // }
-  console.log(generalQuery.data)
+  //onsole.log(generalQuery.data)
   const projects = generalQuery.data.processwire.projects
 
   const createProjectPage = project => {

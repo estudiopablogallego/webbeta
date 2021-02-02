@@ -28,9 +28,7 @@ import Cursor from "./cursor"
 import CursorContext from "../context/cursorContext"
 
 const Layout = allProps => {
-  //onsole.log(allProps)
   const { children, location } = allProps
-  //onsole.log(allProps)
   const data = useStaticQuery(graphql`
     query myprojects {
       processwire {
@@ -71,7 +69,8 @@ const Layout = allProps => {
   const projects = data.processwire.projects
   const apiurl = data.site.siteMetadata.apiurl
   // const imgPath = `${apiurl}/img`
-  const imgPath = `https://estudiopablogallego.gumlet.net`
+  // const imgPath = `https://estudiopablogallego.gumlet.net`
+  const imgPath = `http://api.estudiopablogallego.com/img`
   const slides = []
   let indexCounter = 0
   projects.forEach(project => {
@@ -177,12 +176,22 @@ const Layout = allProps => {
   // ---}
   const onClickLeft = () => {
     activeSlide.current = _.clamp(activeSlide.current - 1, 0, slides.length - 1)
+    if (activeSlide.current !== 0) {
+      setCursorPointer("left")
+    } else {
+      setCursorPointer("default")
+    }
     onClipUpdate()
     updateUrlName()
   }
   const onClickRight = () => {
     //onsole.log("onClickRight")
     activeSlide.current = _.clamp(activeSlide.current + 1, 0, slides.length - 1)
+    if (activeSlide.current + 1 < slides.length) {
+      setCursorPointer("right")
+    } else {
+      setCursorPointer("default")
+    }
     onClipUpdate()
     updateUrlName()
   }
@@ -246,10 +255,18 @@ const Layout = allProps => {
 
   const onMouseMove = (e, cursorContextData) => {
     if (e.clientX >= windowSize * 0.5) {
-      setCursorPointer("right")
+      if (activeSlide.current + 1 < slides.length) {
+        setCursorPointer("right")
+      } else {
+        setCursorPointer("default")
+      }
     }
     if (e.clientX < windowSize * 0.5) {
-      setCursorPointer("left")
+      if (activeSlide.current !== 0) {
+        setCursorPointer("left")
+      } else {
+        setCursorPointer("default")
+      }
     }
   }
   useEffect(() => {
@@ -311,7 +328,6 @@ const Layout = allProps => {
   }
 
   const onMouseLeave = () => {
-    console.log("leave")
     setHidden(true)
   }
 
