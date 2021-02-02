@@ -393,6 +393,8 @@ const Layout = allProps => {
 
   //OnResize
 
+  const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1024
+
   return (
     <CursorContext.Consumer>
       {cursor => {
@@ -565,7 +567,7 @@ const Layout = allProps => {
                               x => `translate3d(${x * 0.3}px,0,0)`
                             ),
                             opacity: x.interpolate(
-                              x => 1 - x / (window.innerWidth * 0.35)
+                              x => 1 - x / (windowWidth * 0.35)
                             ),
                           }}
                         >
