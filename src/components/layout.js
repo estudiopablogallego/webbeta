@@ -648,22 +648,31 @@ const Layout = allProps => {
                 <div className={s.acerca_content}>
                   <div className={s.acerca_textos}>
                     <p className={s.acerca_destacado}>
-                      Conceptos, imágenes y narrativa construyen tu marca. O la
-                      rompen. Somos un estudio de diseño con mentalidad
-                      estratégica que ayudamos a nuestros clientes a definir su
-                      ecosistema de marca y a darle vida a través del lenguaje
-                      visual y verbal.
+                      <strong>
+                        Conceptos, imágenes y narrativa construyen tu marca. O
+                        la rompen.
+                      </strong>{" "}
+                      Somos un estudio de diseño con mentalidad estratégica que
+                      ayudamos a nuestros clientes a definir su ecosistema de
+                      marca y a darle vida a través del lenguaje visual y
+                      verbal.
                     </p>
                     <p>
+                      <strong>Estrategia y diseño de marcas.</strong>{" "}
                       Desarrollamos identidades de marca. Nombramos empresas,
-                      productos y servicios. Creamos interfaces claras e
-                      intuitivas. Diseñamos packaging y etiquetado. Creamos
-                      tipografías a medida. Mejoramos la experiencia del cliente
-                      en los puntos de contacto relevantes. Creamos contenido y
-                      eventos capaces de proyectar lo que somos hacia dentro y
-                      hacia fuera, a la vez que involucran al público en el
-                      nuevo paradigma de la comunicación.
+                      productos y servicios. Diseñamos packaging y etiquetado.
+                      Creamos tipografías a medida y productos editoriales.
                     </p>
+                    <p>
+                      <strong>Activación fluida.</strong> Creamos webs y
+                      productos digitales claros e intuitivos. Mejoramos la
+                      experiencia del cliente en los puntos de contacto
+                      relevantes. Creamos contenido y eventos capaces de
+                      proyectar lo que somos hacia dentro y hacia fuera, a la
+                      vez que involucran al público en el nuevo paradigma de la
+                      comunicación.
+                    </p>
+                    <h6>Enfoque</h6>
                     <p>
                       Cuando todo se encuentra en un estado de cambio constante,
                       la definición de marcos conceptuales alrededor de la idea
@@ -673,10 +682,36 @@ const Layout = allProps => {
                       diseño aplicado al pensamiento y su traducción a
                       diferentes entornos, contextos, momentos y audiencias.
                     </p>
+                    <h6>Equipo</h6>
+                    <p>
+                      Somos flexibles cuando es posible y claros cuando es
+                      necesario.
+                    </p>
+                    <ul className={s.acerca_equipo}>
+                      <li>
+                        <img src="https://picsum.photos/248/176" />
+                        <strong>Pablo Gallego</strong>
+                        <p>Dirección creativa verbal y visual</p>
+                      </li>
+                      <li>
+                        <img src="https://picsum.photos/248/176" />
+                        <strong>José Luis Breell</strong>
+                        <p>Dirección de arte visual</p>
+                      </li>
+                      <li>
+                        <img src="https://picsum.photos/248/176" />
+                        <strong>Juan Bolaños</strong>
+                        <p>Dirección de arte verbal</p>
+                      </li>
+                      <li>
+                        <img src="https://picsum.photos/248/176" />
+                        <strong>Jaime Gallego</strong>
+                        <p>Producción</p>
+                      </li>
+                    </ul>
                     <h6>Contacto</h6>
                     <p className={s.acerca_destacado}>
-                      Somos flexibles cuando es posible y claros cuando es
-                      necesario. Si quieres conocernos, puedes escribirnos a{" "}
+                      Si quieres conocernos, puedes escribirnos a{" "}
                       <a href="mailto:info@estudiopablogallego.com">email</a> o
                       pasarte por nuestro{" "}
                       <a

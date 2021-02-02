@@ -350,10 +350,13 @@
       left: 2rem;
       z-index: 5;
       @media #{$media-tablet-portrait} {
-        width: 43%;
+        width: 67%;
         right: auto;
         bottom: 5rem;
         left: 5rem;
+      }
+      @media #{$media-tablet-landscape} {
+        width: 43%;
       }
       .projectTitle,
       .projectTexto {
@@ -744,7 +747,7 @@
     font-size: 1.6rem;
     p {
       position: relative;
-      margin-bottom: 3em;
+      margin-bottom: 2em;
 
       line-height: 2.8rem;
       font-size: 1.6rem;
@@ -764,7 +767,8 @@
       }
     }
     h6 {
-      margin-top: 4rem;
+      margin-top: 2rem;
+      margin-bottom: 0.4rem;
       font-weight: 700;
       line-height: 2.5rem;
       font-size: 1.4rem;
@@ -772,8 +776,31 @@
       border-top: 0.05rem solid black;
 
       @media #{$media-tablet-portrait} {
-        margin-top: 14rem;
+        margin-top: 8rem;
         padding-top: 0.4rem;
+      }
+    }
+    .acerca_equipo {
+      margin-right: -2rem;
+      margin-bottom: -5.6rem;
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: calc(50% - 2rem);
+        margin-right: 2rem;
+        margin-bottom: 5.6rem;
+        strong,
+        p {
+          line-height: 1.9rem;
+          margin: 0;
+        }
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 0.9rem;
+        }
       }
     }
   }
