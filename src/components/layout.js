@@ -53,6 +53,7 @@ const Layout = allProps => {
         projects {
           slug
           title
+          titleinpage
           texto
           pwid
           media {
@@ -101,7 +102,7 @@ const Layout = allProps => {
       }
       //if (index === 0) {
       slide.projectSlug = project.slug
-      slide.projectTitle = project.title
+      slide.projectTitle = project.titleinpage
       slide.projectTexto = project.texto
       //}
       slides.push(slide)

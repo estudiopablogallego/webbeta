@@ -14,14 +14,14 @@ const IndexPage = pagedata => {
     texto,
     seo_description,
     seo_title,
-    seo_image,
+    // seo_image,
   } = pagedata.pageContext
   return (
     <>
       <SEO
-        title={seo_title}
-        description={seo_description}
-        image={`${imgPath}/${pwid}/seo_image/800/`}
+        title={seo_title || title}
+        description={seo_description || texto}
+        image={`${imgPath}/${pwid}/seo_image/1200/`}
       />
       <div
         style={{
@@ -33,7 +33,7 @@ const IndexPage = pagedata => {
       >
         <h1>{title}</h1>
         <p>{texto}</p>
-        <img src={`${imgPath}/${pwid}/seo_image/800/`} />
+        <img src={`${imgPath}/${pwid}/seo_image/1200/`} />
       </div>
     </>
   )
