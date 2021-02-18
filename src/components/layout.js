@@ -26,6 +26,7 @@ import "./layout.css"
 import s from "./layout.module.scss"
 import Cursor from "./cursor"
 import CursorContext from "../context/cursorContext"
+import forEach from "lodash/forEach"
 
 const Layout = allProps => {
   if (typeof document === "object") {
@@ -92,9 +93,9 @@ const Layout = allProps => {
   const imgPath = `http://api.estudiopablogallego.com/img`
   const slides = []
   let indexCounter = 0
-  projects.forEach(project => {
+  forEach(projects, project => {
     project.slideNumber = slides.length
-    project.media.forEach((mediaItem, index) => {
+    forEach(project.media, (mediaItem, index) => {
       const slide = {
         isFirstPage: index === 0,
         index: indexCounter++,
@@ -266,7 +267,7 @@ const Layout = allProps => {
   const [hidden, setHidden] = useState(false)
 
   const handleLinkHoverEvents = () => {
-    document.querySelectorAll("a").forEach(el => {
+    forEach(document.querySelectorAll("a"), el => {
       el.addEventListener("mouseover", () => setLinkHovered(true))
       el.addEventListener("mouseout", () => setLinkHovered(false))
     })
@@ -306,6 +307,7 @@ const Layout = allProps => {
         })
       } else {
         videoVerRefs.current.forEach((videoEl, i) => {
+          console.log(videoEl.pause)
           if (activeSlide.current == i) {
             videoEl.play()
           } else {
