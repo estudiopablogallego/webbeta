@@ -796,8 +796,12 @@
         strong,
         p {
           line-height: 1.9rem;
+          font-size: 1.4rem;
           margin: 0;
+          display: block;
+          padding: 0 0.4rem;
         }
+
         * {
           background-color: $c-amarillo;
         }
@@ -811,6 +815,7 @@
           display: none;
           &.active {
             display: block;
+            margin-bottom: 1.2rem;
           }
         }
       }

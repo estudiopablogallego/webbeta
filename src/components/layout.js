@@ -431,6 +431,16 @@ const Layout = allProps => {
       return
     }
   })
+
+  const [acercaTime, setAcercaTime] = useState(11)
+
+  const onMostrarAcerca = () => {
+    setAcercaVisible(!acercaVisible)
+    cursorContextData.setBlanco(false)
+    const d = new Date()
+    const hora = d.getHours()
+    setAcercaTime(hora)
+  }
   // // Si es SSR oculta el resto de slides
   // if (typeof window === "undefined") {
   //   onsole.log("allProps")
@@ -479,8 +489,7 @@ const Layout = allProps => {
                       onMouseEnter={() => setCursorPointer("pointer")}
                       onMouseLeave={() => setCursorPointer("default")}
                       onClick={() => {
-                        setAcercaVisible(!acercaVisible)
-                        cursorContextData.setBlanco(false)
+                        onMostrarAcerca()
                       }}
                     >
                       Info
@@ -769,10 +778,14 @@ const Layout = allProps => {
                         {data.fotospablo.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === 11 ? s.active : ""}
+                              className={i === acercaTime ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
-                              alt={i === 11 ? "Pablo Gallego Sevilla" : "---"}
+                              alt={
+                                i === acercaTime
+                                  ? "Pablo Gallego Sevilla"
+                                  : "---"
+                              }
                             />
                           )
                         })}
@@ -784,10 +797,12 @@ const Layout = allProps => {
                         {data.fotosbreell.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === 11 ? s.active : ""}
+                              className={i === acercaTime ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
-                              alt={i === 11 ? "José Luis Breell" : "---"}
+                              alt={
+                                i === acercaTime ? "José Luis Breell" : "---"
+                              }
                             />
                           )
                         })}
@@ -799,10 +814,10 @@ const Layout = allProps => {
                         {data.fotosjuan.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === 11 ? s.active : ""}
+                              className={i === acercaTime ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
-                              alt={i === 11 ? "Juan Bolaños" : "---"}
+                              alt={i === acercaTime ? "Juan Bolaños" : "---"}
                             />
                           )
                         })}
@@ -814,10 +829,10 @@ const Layout = allProps => {
                         {data.fotosjaime.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === 11 ? s.active : ""}
+                              className={i === acercaTime ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
-                              alt={i === 11 ? "Jaime Gallego" : "---"}
+                              alt={i === acercaTime ? "Jaime Gallego" : "---"}
                             />
                           )
                         })}
