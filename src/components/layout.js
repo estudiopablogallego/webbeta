@@ -142,7 +142,7 @@ const Layout = allProps => {
   const apiurl = data.site.siteMetadata.apiurl
   // const imgPath = `${apiurl}/img`
   // const imgPath = `https://estudiopablogallego.gumlet.net`
-  const imgPath = `http://api.estudiopablogallego.com/img`
+  const imgPath = `https://api.estudiopablogallego.com/img`
   const slides = []
   let indexCounter = 0
   forEach(projects, project => {

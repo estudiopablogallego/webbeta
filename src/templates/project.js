@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 
 import SEO from "../components/seo"
 // const imgPath = `https://estudiopablogallego.gumlet.net`
-const imgPath = `http://api.estudiopablogallego.com/img`
+const imgPath = `https://api.estudiopablogallego.com/img`
 
 const IndexPage = pagedata => {
   const {
