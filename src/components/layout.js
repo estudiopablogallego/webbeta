@@ -77,6 +77,58 @@ const Layout = allProps => {
           apiurl
         }
       }
+      fotosjuan: allFile(
+        filter: { relativeDirectory: { eq: "equipo/juan" } }
+        sort: { fields: relativePath }
+      ) {
+        nodes {
+          relativePath
+          childImageSharp {
+            fluid(maxWidth: 496, quality: 60) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+      fotosbreell: allFile(
+        filter: { relativeDirectory: { eq: "equipo/breell" } }
+        sort: { fields: relativePath }
+      ) {
+        nodes {
+          relativePath
+          childImageSharp {
+            fluid(maxWidth: 496, quality: 60) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+      fotospablo: allFile(
+        filter: { relativeDirectory: { eq: "equipo/pablo" } }
+        sort: { fields: relativePath }
+      ) {
+        nodes {
+          relativePath
+          childImageSharp {
+            fluid(maxWidth: 496, quality: 60) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+      fotosjaime: allFile(
+        filter: { relativeDirectory: { eq: "equipo/jaime" } }
+        sort: { fields: relativePath }
+      ) {
+        nodes {
+          relativePath
+          childImageSharp {
+            fluid(maxWidth: 496, quality: 60) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
     }
   `)
 
@@ -714,22 +766,62 @@ const Layout = allProps => {
                     </p>
                     <ul className={s.acerca_equipo}>
                       <li>
-                        <img src="https://picsum.photos/248/176" />
+                        {data.fotospablo.nodes.map((foto, i) => {
+                          return (
+                            <Img
+                              className={i === 11 ? s.active : ""}
+                              key={i}
+                              fluid={foto.childImageSharp.fluid}
+                              alt={i === 11 ? "Pablo Gallego Sevilla" : "---"}
+                            />
+                          )
+                        })}
+
                         <strong>Pablo Gallego</strong>
                         <p>Dirección creativa verbal y visual</p>
                       </li>
                       <li>
-                        <img src="https://picsum.photos/248/176" />
+                        {data.fotosbreell.nodes.map((foto, i) => {
+                          return (
+                            <Img
+                              className={i === 11 ? s.active : ""}
+                              key={i}
+                              fluid={foto.childImageSharp.fluid}
+                              alt={i === 11 ? "José Luis Breell" : "---"}
+                            />
+                          )
+                        })}
+
                         <strong>José Luis Breell</strong>
                         <p>Dirección de arte visual</p>
                       </li>
                       <li>
-                        <img src="https://picsum.photos/248/176" />
+                        {data.fotosjuan.nodes.map((foto, i) => {
+                          return (
+                            <Img
+                              className={i === 11 ? s.active : ""}
+                              key={i}
+                              fluid={foto.childImageSharp.fluid}
+                              alt={i === 11 ? "Juan Bolaños" : "---"}
+                            />
+                          )
+                        })}
+
                         <strong>Juan Bolaños</strong>
                         <p>Dirección de arte verbal</p>
                       </li>
                       <li>
-                        <img src="https://picsum.photos/248/176" />
+                        {data.fotosjaime.nodes.map((foto, i) => {
+                          return (
+                            <Img
+                              className={i === 11 ? s.active : ""}
+                              key={i}
+                              fluid={foto.childImageSharp.fluid}
+                              alt={i === 11 ? "Jaime Gallego" : "---"}
+                            />
+                          )
+                        })}
+
                         <strong>Jaime Gallego</strong>
                         <p>Producción</p>
                       </li>

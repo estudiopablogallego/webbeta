@@ -792,15 +792,26 @@
         width: calc(50% - 2rem);
         margin-right: 2rem;
         margin-bottom: 5.6rem;
+
         strong,
         p {
           line-height: 1.9rem;
           margin: 0;
         }
+        * {
+          background-color: $c-amarillo;
+        }
         img {
           width: 100%;
           height: auto;
           border-radius: 0.9rem;
+          mix-blend-mode: multiply;
+        }
+        > div {
+          display: none;
+          &.active {
+            display: block;
+          }
         }
       }
     }
