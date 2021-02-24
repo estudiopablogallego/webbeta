@@ -30,7 +30,7 @@
   right: 0;
   left: 0;
   z-index: 10;
-  padding: 2.4rem 2rem;
+  padding: 2.4rem 2.4rem;
   @media #{$media-tablet-portrait} {
     padding: 0;
     top: 5rem;
@@ -822,6 +822,29 @@
     }
   }
 }
+.acerca_logo,
+.trabajos_logo {
+  display: block;
+  position: absolute;
+  top: 2.4rem;
+  left: 2.4rem;
+  width: 60%;
+  line-height: 1.7rem;
+  font-weight: normal;
+  font-size: 1.4rem;
+  color: #000;
+  @media #{$media-tablet-portrait} {
+    display: none;
+  }
+  strong {
+    display: block;
+    font-weight: bold;
+    @media #{$media-tablet-portrait} {
+      display: inline;
+    }
+  }
+}
+
 .acerca_cerrar {
   display: block;
   position: absolute;

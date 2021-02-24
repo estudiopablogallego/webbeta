@@ -703,6 +703,9 @@ const Layout = allProps => {
                     </ul>
                   </nav>
                 </div>
+                <div className={s.trabajos_logo}>
+                  Estudio <strong>Pablo Gallego</strong>
+                </div>
                 <div
                   className={s.trabajos_cerrar}
                   onMouseEnter={() => setCursorPointer("pointer")}
@@ -855,6 +858,9 @@ const Layout = allProps => {
                       . Creemos que será divertido.
                     </p>
                   </div>
+                </div>
+                <div className={s.acerca_logo}>
+                  Estudio <strong>Pablo Gallego</strong>
                 </div>
                 <div
                   className={s.acerca_cerrar}
