@@ -67,6 +67,7 @@ const Layout = allProps => {
             beta_imagen_vertical_base64
             beta_imagen_horizontal
             beta_imagen_horizontal_base64
+            beta_imagen_horizontal_2000
             beta_imagen_horizontal_1200
             beta_imagen_horizontal_220
             beta_imagen_horizontal_440
@@ -77,7 +78,7 @@ const Layout = allProps => {
             beta_imagen_vertical_220
             beta_imagen_vertical_440
             beta_imagen_vertical_880
-            beta_imagen_vertical_980
+            beta_imagen_vertical_1200
             beta_video_horizontal
             beta_video_vertical
           }
@@ -543,7 +544,7 @@ const Layout = allProps => {
                               base64: slides[i].beta_imagen_horizontal_base64,
                               sizes: "(max-width: 1200px) 100vw, 1200px",
                               src: slides[i].beta_imagen_horizontal_1200,
-                              srcSet: `${slides[i].beta_imagen_horizontal_220} 220w, ${slides[i].beta_imagen_horizontal_440} 440w, ${slides[i].beta_imagen_horizontal_880} 880w, ${slides[i].beta_imagen_horizontal_980} 980w, ${slides[i].beta_imagen_horizontal_1200} 1200w`,
+                              srcSet: `${slides[i].beta_imagen_horizontal_220} 220w, ${slides[i].beta_imagen_horizontal_440} 440w, ${slides[i].beta_imagen_horizontal_880} 880w, ${slides[i].beta_imagen_horizontal_980} 980w, ${slides[i].beta_imagen_horizontal_1200} 1200w, ${slides[i].beta_imagen_horizontal_2000} 2000w`,
                             }}
                             alt={slides[i].title}
                             loading="eager"
@@ -572,7 +573,7 @@ const Layout = allProps => {
                               base64: slides[i].beta_imagen_vertical_base64,
                               sizes: "(max-width: 880px) 100vw, 880px",
                               src: slides[i].beta_imagen_vertical_800,
-                              srcSet: `${slides[i].beta_imagen_vertical_220} 220w, ${slides[i].beta_imagen_vertical_440} 440w, ${slides[i].beta_imagen_vertical_880} 880w, ${slides[i].beta_imagen_vertical_980} 980w`,
+                              srcSet: `${slides[i].beta_imagen_vertical_220} 220w, ${slides[i].beta_imagen_vertical_440} 440w, ${slides[i].beta_imagen_vertical_880} 880w, ${slides[i].beta_imagen_vertical_1200} 1200w`,
                             }}
                             alt={slides[i].title}
                             loading="eager"
