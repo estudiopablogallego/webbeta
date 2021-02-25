@@ -67,6 +67,17 @@ const Layout = allProps => {
             beta_imagen_vertical_base64
             beta_imagen_horizontal
             beta_imagen_horizontal_base64
+            beta_imagen_horizontal_1200
+            beta_imagen_horizontal_220
+            beta_imagen_horizontal_440
+            beta_imagen_horizontal_880
+            beta_imagen_horizontal_980
+
+            beta_imagen_vertical_800
+            beta_imagen_vertical_220
+            beta_imagen_vertical_440
+            beta_imagen_vertical_880
+            beta_imagen_vertical_980
             beta_video_horizontal
             beta_video_vertical
           }
@@ -530,9 +541,9 @@ const Layout = allProps => {
                             fluid={{
                               aspectRatio: 1.5,
                               base64: slides[i].beta_imagen_horizontal_base64,
-                              sizes: "(max-width: 880px) 100vw, 880px",
-                              src: `${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/800/`,
-                              srcSet: `${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/220/ 220w, ${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/440/ 440w, ${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/880/ 880w, ${imgPath}/${slides[i].pwid}/beta_imagen_horizontal/980/ 980w`,
+                              sizes: "(max-width: 1200px) 100vw, 1200px",
+                              src: slides[i].beta_imagen_horizontal_1200,
+                              srcSet: `${slides[i].beta_imagen_horizontal_220} 220w, ${slides[i].beta_imagen_horizontal_440} 440w, ${slides[i].beta_imagen_horizontal_880} 880w, ${slides[i].beta_imagen_horizontal_980} 980w`,
                             }}
                             alt={slides[i].title}
                             loading="eager"
@@ -560,8 +571,8 @@ const Layout = allProps => {
                               aspectRatio: 1.5,
                               base64: slides[i].beta_imagen_vertical_base64,
                               sizes: "(max-width: 880px) 100vw, 880px",
-                              src: `${imgPath}/${slides[i].pwid}/beta_imagen_vertical/800/`,
-                              srcSet: `${imgPath}/${slides[i].pwid}/beta_imagen_vertical/220/ 220w, ${imgPath}/${slides[i].pwid}/beta_imagen_vertical/440/ 440w, ${imgPath}/${slides[i].pwid}/beta_imagen_vertical/880/ 880w, ${imgPath}/${slides[i].pwid}/beta_imagen_vertical/980/ 980w`,
+                              src: slides[i].beta_imagen_vertical_800,
+                              srcSet: `${slides[i].beta_imagen_vertical_220} 220w, ${slides[i].beta_imagen_vertical_440} 440w, ${slides[i].beta_imagen_vertical_880} 880w, ${slides[i].beta_imagen_vertical_980} 980w`,
                             }}
                             alt={slides[i].title}
                             loading="eager"
