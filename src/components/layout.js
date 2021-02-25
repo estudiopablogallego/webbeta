@@ -543,7 +543,7 @@ const Layout = allProps => {
                               base64: slides[i].beta_imagen_horizontal_base64,
                               sizes: "(max-width: 1200px) 100vw, 1200px",
                               src: slides[i].beta_imagen_horizontal_1200,
-                              srcSet: `${slides[i].beta_imagen_horizontal_220} 220w, ${slides[i].beta_imagen_horizontal_440} 440w, ${slides[i].beta_imagen_horizontal_880} 880w, ${slides[i].beta_imagen_horizontal_980} 980w`,
+                              srcSet: `${slides[i].beta_imagen_horizontal_220} 220w, ${slides[i].beta_imagen_horizontal_440} 440w, ${slides[i].beta_imagen_horizontal_880} 880w, ${slides[i].beta_imagen_horizontal_980} 980w, ${slides[i].beta_imagen_horizontal_1200} 1200w`,
                             }}
                             alt={slides[i].title}
                             loading="eager"
