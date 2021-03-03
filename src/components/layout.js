@@ -328,7 +328,7 @@ const Layout = allProps => {
   // const [cursorContextData, cursorContextData.setCursor] = useState('default') //default left right pointer
   const [clicked, setClicked] = useState(false)
   const [linkHovered, setLinkHovered] = useState(false)
-  const [hidden, setHidden] = useState(false)
+  const [hidden, setHidden] = useState(true)
 
   const handleLinkHoverEvents = () => {
     forEach(document.querySelectorAll("a"), el => {
@@ -371,7 +371,7 @@ const Layout = allProps => {
         })
       } else {
         videoVerRefs.current.forEach((videoEl, i) => {
-          console.log(videoEl.pause)
+          //onsole.log(videoEl.pause)
           if (activeSlide.current == i) {
             videoEl.play()
           } else {

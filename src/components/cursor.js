@@ -16,7 +16,7 @@ const Cursor = ({ hidden }) => {
   // const [estado, setEstado] = useState('default')
   const onMouseMove = e => {
     setPosition({ x: e.clientX, y: e.clientY })
-    cursorContextData.setPosicion({ x: e.clientX, y: e.clientY })
+    // cursorContextData.setPosicion({ x: e.clientX, y: e.clientY })
   }
 
   const cursorSpring = useSpring({
@@ -75,8 +75,10 @@ const Cursor = ({ hidden }) => {
   return (
     <CursorContext.Consumer>
       {cursor => (
-        <div
-          className={`cursor_contenedor ${s.container} ${hidden ? s.cursor_no_visible : ""}`}
+        <a.div
+          className={`cursor_contenedor ${s.container} ${
+            hidden ? s.cursor_no_visible : ""
+          }`}
           // onClick={(e)=>{return false}}
           // onDrag={(e)=>{return false}}
           style={{ left: `${position.x}px`, top: `${position.y}px` }}
@@ -106,7 +108,7 @@ const Cursor = ({ hidden }) => {
               <a.path d={cursorSpring.linea} stroke={cursorSpring.color} />
             </g>
           </a.svg>
-        </div>
+        </a.div>
       )}
     </CursorContext.Consumer>
   )
