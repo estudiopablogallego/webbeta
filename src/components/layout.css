@@ -10,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+  font-family: serif;
 }
 article,
 aside,
@@ -51,9 +52,20 @@ a:hover {
   outline-width: 0;
 }
 
-body.touch-device .cursor_contenedor {
+/* body.touch-device .cursor_contenedor {
   display: none !important;
 }
 body.touch-device * {
   cursor: default !important;
+} */
+
+@supports not (-ms-high-contrast: none) {
+  * {
+    cursor: none;
+  }
+}
+@media (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .cursor_contenedor {
+    display: none !important;
+  }
 }
