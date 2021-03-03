@@ -1,15 +1,29 @@
 import React from "react"
-import { Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 // import Cursor from "../components/cursor"
 
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <>
-    <SEO title="Estudio Pablo Gallego diseño gráfico" />
-  </>
-)
+const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    query myquery {
+      processwire {
+        general {
+          seo_description
+          seo_image
+          seo_title
+        }
+      }
+    }
+  `)
+  const { seo_title, seo_description, seo_image } = data.processwire.general
+  return (
+    <>
+      <SEO title={seo_title} description={seo_description} image={seo_image} />
+    </>
+  )
+}
 
 export default IndexPage

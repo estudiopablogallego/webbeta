@@ -20,6 +20,7 @@ exports.createPages = async ({ graphql, actions }) => {
             texto
             seo_title
             seo_description
+            seo_image
           }
         }
       }
