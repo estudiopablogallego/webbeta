@@ -81,7 +81,7 @@
         border: 1px solid #000;
         border-radius: 15px;
         color: #000;
-        // transition: color $transitionspeed, border $transitionspeed;
+        transition: color $transitionspeedslow, border $transitionspeedslow;
         cursor: none;
         @media #{$media-tablet-portrait} {
           margin: 0 0 0 2.4rem;
@@ -112,6 +112,7 @@
           background-color: $c-amarillo;
           border-color: $c-amarillo;
           color: #000;
+          transition: none;
         }
         &:hover::before {
           border-color: $c-amarillo;
@@ -556,6 +557,7 @@
         li {
           color: #fff;
           border-color: #fff;
+          transition: color $transitionspeedslow, border $transitionspeedslow;
           &:hover::before {
             display: block;
           }
