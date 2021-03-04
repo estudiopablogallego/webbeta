@@ -28,6 +28,17 @@ import Cursor from "./cursor"
 import CursorContext from "../context/cursorContext"
 import forEach from "lodash/forEach"
 
+if (typeof window !== "undefined") {
+  window.addEventListener(
+    "touchstart",
+    function onFirstHover() {
+      window.USER_IS_TOUCHING = true
+      window.removeEventListener("touchstart", onFirstHover, false)
+    },
+    false
+  )
+}
+
 const Layout = allProps => {
   if (typeof document === "object") {
     //Para que no se escale en safari ios 10+ scale fix
@@ -405,19 +416,27 @@ const Layout = allProps => {
   }
 
   const onMouseDown = () => {
-    setClicked(true)
+    if (!window.USER_IS_TOUCHING) {
+      setClicked(true)
+    }
   }
 
   const onMouseUp = () => {
-    setClicked(false)
+    if (!window.USER_IS_TOUCHING) {
+      setClicked(false)
+    }
   }
 
   const onMouseLeave = () => {
-    setHidden(true)
+    if (!window.USER_IS_TOUCHING) {
+      setHidden(true)
+    }
   }
 
   const onMouseEnter = () => {
-    setHidden(false)
+    if (!window.USER_IS_TOUCHING) {
+      setHidden(false)
+    }
   }
 
   //TRABAJOS
@@ -444,7 +463,7 @@ const Layout = allProps => {
     }
   })
 
-  const [acercaTime, setAcercaTime] = useState([11,0])
+  const [acercaTime, setAcercaTime] = useState([11, 0])
 
   const onMostrarAcerca = () => {
     setAcercaVisible(!acercaVisible)
@@ -452,7 +471,7 @@ const Layout = allProps => {
     const d = new Date()
     const hora = d.getHours()
     const minutos = d.getMinutes()
-    setAcercaTime([hora,minutos])
+    setAcercaTime([hora, minutos])
   }
   // // Si es SSR oculta el resto de slides
   // if (typeof window === "undefined") {
@@ -805,7 +824,10 @@ const Layout = allProps => {
                             />
                           )
                         })}
-                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
+                        <span>
+                          {("0" + acercaTime[0]).slice(-2)}:
+                          {("0" + acercaTime[1]).slice(-2)}
+                        </span>
                         <strong>Pablo Gallego</strong>
                         <p>Dirección creativa verbal y visual</p>
                       </li>
@@ -822,7 +844,10 @@ const Layout = allProps => {
                             />
                           )
                         })}
-                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
+                        <span>
+                          {("0" + acercaTime[0]).slice(-2)}:
+                          {("0" + acercaTime[1]).slice(-2)}
+                        </span>
 
                         <strong>José Luis Breell</strong>
                         <p>Dirección de arte visual</p>
@@ -838,7 +863,10 @@ const Layout = allProps => {
                             />
                           )
                         })}
-                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
+                        <span>
+                          {("0" + acercaTime[0]).slice(-2)}:
+                          {("0" + acercaTime[1]).slice(-2)}
+                        </span>
                         <strong>Juan Bolaños</strong>
                         <p>Dirección de arte verbal</p>
                       </li>
@@ -849,11 +877,16 @@ const Layout = allProps => {
                               className={i === acercaTime[0] ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
-                              alt={i === acercaTime[0] ? "Jaime Gallego" : "---"}
+                              alt={
+                                i === acercaTime[0] ? "Jaime Gallego" : "---"
+                              }
                             />
                           )
                         })}
-                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
+                        <span>
+                          {("0" + acercaTime[0]).slice(-2)}:
+                          {("0" + acercaTime[1]).slice(-2)}
+                        </span>
 
                         <strong>Jaime Gallego</strong>
                         <p>Producción</p>
