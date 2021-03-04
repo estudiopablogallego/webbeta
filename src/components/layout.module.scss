@@ -802,7 +802,16 @@
         width: calc(50% - 2rem);
         margin-right: 2rem;
         margin-bottom: 5.6rem;
-
+        span{
+          display: block;
+          position: relative;
+          color: $c-amarillo;
+          font-size: 1rem;
+          margin-top: -2.6rem;
+          text-align: right;
+          padding-right: 0.6rem;
+          background-color: transparent;
+        }
         strong,
         p {
           line-height: 1.9rem;
@@ -811,7 +820,9 @@
           display: block;
           padding: 0 0.4rem;
         }
-
+        strong{
+          margin-top: 1.2rem;
+        }
         * {
           background-color: $c-amarillo;
         }
@@ -825,7 +836,7 @@
           display: none;
           &.active {
             display: block;
-            margin-bottom: 1.2rem;
+            
           }
         }
       }

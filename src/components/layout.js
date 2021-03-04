@@ -444,14 +444,15 @@ const Layout = allProps => {
     }
   })
 
-  const [acercaTime, setAcercaTime] = useState(11)
+  const [acercaTime, setAcercaTime] = useState([11,0])
 
   const onMostrarAcerca = () => {
     setAcercaVisible(!acercaVisible)
     cursorContextData.setBlanco(false)
     const d = new Date()
     const hora = d.getHours()
-    setAcercaTime(hora)
+    const minutos = d.getMinutes()
+    setAcercaTime([hora,minutos])
   }
   // // Si es SSR oculta el resto de slides
   // if (typeof window === "undefined") {
@@ -793,18 +794,18 @@ const Layout = allProps => {
                         {data.fotospablo.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === acercaTime ? s.active : ""}
+                              className={i === acercaTime[0] ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
                               alt={
-                                i === acercaTime
+                                i === acercaTime[0]
                                   ? "Pablo Gallego Sevilla"
                                   : "---"
                               }
                             />
                           )
                         })}
-
+                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
                         <strong>Pablo Gallego</strong>
                         <p>Dirección creativa verbal y visual</p>
                       </li>
@@ -812,15 +813,16 @@ const Layout = allProps => {
                         {data.fotosbreell.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === acercaTime ? s.active : ""}
+                              className={i === acercaTime[0] ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
                               alt={
-                                i === acercaTime ? "José Luis Breell" : "---"
+                                i === acercaTime[0] ? "José Luis Breell" : "---"
                               }
                             />
                           )
                         })}
+                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
 
                         <strong>José Luis Breell</strong>
                         <p>Dirección de arte visual</p>
@@ -829,14 +831,14 @@ const Layout = allProps => {
                         {data.fotosjuan.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === acercaTime ? s.active : ""}
+                              className={i === acercaTime[0] ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
-                              alt={i === acercaTime ? "Juan Bolaños" : "---"}
+                              alt={i === acercaTime[0] ? "Juan Bolaños" : "---"}
                             />
                           )
                         })}
-
+                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
                         <strong>Juan Bolaños</strong>
                         <p>Dirección de arte verbal</p>
                       </li>
@@ -844,13 +846,14 @@ const Layout = allProps => {
                         {data.fotosjaime.nodes.map((foto, i) => {
                           return (
                             <Img
-                              className={i === acercaTime ? s.active : ""}
+                              className={i === acercaTime[0] ? s.active : ""}
                               key={i}
                               fluid={foto.childImageSharp.fluid}
-                              alt={i === acercaTime ? "Jaime Gallego" : "---"}
+                              alt={i === acercaTime[0] ? "Jaime Gallego" : "---"}
                             />
                           )
                         })}
+                        <span>{('0' + acercaTime[0]).slice(-2)}:{('0' + acercaTime[1]).slice(-2)}</span>
 
                         <strong>Jaime Gallego</strong>
                         <p>Producción</p>
