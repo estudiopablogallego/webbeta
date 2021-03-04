@@ -373,8 +373,8 @@
         font-size: 1.6rem;
         color: #000;
         @media #{$media-tablet-portrait} {
-          line-height: 2.8rem;
-          font-size: 2rem;
+          line-height: 2.4rem;
+          font-size: 1.6rem;
         }
       }
       .projectTitle {
@@ -802,7 +802,7 @@
         width: calc(50% - 2rem);
         margin-right: 2rem;
         margin-bottom: 5.6rem;
-        span{
+        span {
           display: block;
           position: relative;
           color: $c-amarillo;
@@ -820,7 +820,7 @@
           display: block;
           padding: 0 0.4rem;
         }
-        strong{
+        strong {
           margin-top: 1.2rem;
         }
         * {
@@ -836,7 +836,6 @@
           display: none;
           &.active {
             display: block;
-            
           }
         }
       }
