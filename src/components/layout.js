@@ -500,9 +500,26 @@ const Layout = allProps => {
             <div className={`${fondoOscuro ? s.fondo_oscuro : ""}`}>
               <main>{children}</main>
               <header className={s.header}>
-                <h2>
-                  Estudio <strong>Pablo Gallego</strong>
-                </h2>
+                <TransitionLink
+                  to="/"
+                  onClick={() => {
+                    goToSlide(0)
+                    cursorContextData.setBlanco(
+                      slides[activeSlide.current].imagen_oscura
+                    )
+                  }}
+                  onMouseEnter={() => {
+                    if (activeSlide.current != 0) {
+                      setCursorPointer("pointer")
+                    }
+                  }}
+                  onMouseLeave={() => setCursorPointer("default")}
+                >
+                  <h2>
+                    Estudio <strong>Pablo Gallego</strong>
+                  </h2>
+                </TransitionLink>
+
                 <nav>
                   <ul>
                     <li
@@ -708,6 +725,19 @@ const Layout = allProps => {
                   }}
                 />
                 <div className={s.trabajos_content}>
+                  <TransitionLink
+                    to="/"
+                    onClick={() => {
+                      goToSlide(0)
+                      setTrabajosVisibles(!trabajosVisibles)
+                      cursorContextData.setBlanco(
+                        slides[activeSlide.current].imagen_oscura
+                      )
+                    }}
+                    className={s.trabajos_logo}
+                  >
+                    Estudio <strong>Pablo Gallego</strong>
+                  </TransitionLink>
                   <nav>
                     <ul>
                       {projects.map((project, index) => {
@@ -734,9 +764,6 @@ const Layout = allProps => {
                       })}
                     </ul>
                   </nav>
-                </div>
-                <div className={s.trabajos_logo}>
-                  Estudio <strong>Pablo Gallego</strong>
                 </div>
                 <div
                   className={s.trabajos_cerrar}
@@ -767,6 +794,19 @@ const Layout = allProps => {
                   }}
                 />
                 <div className={s.acerca_content}>
+                  <TransitionLink
+                    to="/"
+                    onClick={() => {
+                      goToSlide(0)
+                      setAcercaVisible(!acercaVisible)
+                      cursorContextData.setBlanco(
+                        slides[activeSlide.current].imagen_oscura
+                      )
+                    }}
+                    className={s.acerca_logo}
+                  >
+                    Estudio <strong>Pablo Gallego</strong>
+                  </TransitionLink>
                   <div className={s.acerca_textos}>
                     <p className={s.acerca_destacado}>
                       <strong>
@@ -907,9 +947,7 @@ const Layout = allProps => {
                     </p>
                   </div>
                 </div>
-                <div className={s.acerca_logo}>
-                  Estudio <strong>Pablo Gallego</strong>
-                </div>
+
                 <div
                   className={s.acerca_cerrar}
                   onMouseEnter={() => setCursorPointer("pointer")}

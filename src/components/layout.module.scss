@@ -38,26 +38,30 @@
     right: 5rem;
     left: 5rem;
   }
-
-  h2 {
-    margin: 0;
-    line-height: 1.7rem;
-    @extend %font1;
-    font-weight: normal;
-    font-size: 1.4rem;
-    color: #000;
-    transition: color $transitionspeed;
-    @media #{$media-tablet-portrait} {
-      font-size: 1.6rem;
-    }
-    strong {
-      display: block;
-      font-weight: bold;
+  a {
+    display: block;
+    text-decoration: none;
+    h2 {
+      margin: 0;
+      line-height: 1.7rem;
+      @extend %font1;
+      font-weight: normal;
+      font-size: 1.4rem;
+      color: #000;
+      transition: color $transitionspeed;
       @media #{$media-tablet-portrait} {
-        display: inline;
+        font-size: 1.6rem;
+      }
+      strong {
+        display: block;
+        font-weight: bold;
+        @media #{$media-tablet-portrait} {
+          display: inline;
+        }
       }
     }
   }
+
   nav {
     position: absolute;
     top: 2.4rem;
@@ -661,14 +665,18 @@
 .trabajos_cerrar {
   display: block;
   position: absolute;
-  top: 3.8rem;
-  right: 3.8rem;
+  top: 2.2rem;
+  right: 2.2rem;
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
   border: 1px solid black;
   @media (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    cursor: ew-resize;
+    cursor: pointer;
+  }
+  @media #{$media-tablet-portrait} {
+    top: 3.8rem;
+    right: 3.8rem;
   }
   // cursor: pointer;
   &::before,
@@ -853,6 +861,7 @@
   @extend %font1;
   font-weight: normal;
   font-size: 1.4rem;
+  text-decoration: none;
   color: #000;
   @media #{$media-tablet-portrait} {
     display: none;
@@ -869,14 +878,18 @@
 .acerca_cerrar {
   display: block;
   position: absolute;
-  top: 3.8rem;
-  right: 3.8rem;
+  top: 2.2rem;
+  right: 2.2rem;
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
   border: 1px solid black;
   @media (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    cursor: ew-resize;
+    cursor: pointer;
+  }
+  @media #{$media-tablet-portrait} {
+    top: 3.8rem;
+    right: 3.8rem;
   }
   // cursor: pointer;
   &::before,
