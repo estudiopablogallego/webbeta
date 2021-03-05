@@ -935,11 +935,19 @@ const Layout = allProps => {
                     <h6>Contacto</h6>
                     <p className={s.acerca_destacado}>
                       Si quieres conocernos, puedes escribirnos a{" "}
-                      <a href="mailto:info@estudiopablogallego.com">email</a> o
-                      pasarte por nuestro{" "}
+                      <a
+                        href="mailto:info@estudiopablogallego.com"
+                        onMouseEnter={() => setCursorPointer("pointer")}
+                        onMouseLeave={() => setCursorPointer("default")}
+                      >
+                        email
+                      </a>{" "}
+                      o pasarte por nuestro{" "}
                       <a
                         href="https://goo.gl/maps/XeBBkwg1ykxEKomRA"
                         target="_blank"
+                        onMouseEnter={() => setCursorPointer("pointer")}
+                        onMouseLeave={() => setCursorPointer("default")}
                       >
                         estudio
                       </a>
