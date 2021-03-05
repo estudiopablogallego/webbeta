@@ -18,8 +18,6 @@ const Cursor = ({ hidden }) => {
     setPosition({ x: e.clientX, y: e.clientY })
     // cursorContextData.setPosicion({ x: e.clientX, y: e.clientY })
   }
-  console.log(cursorContextData.cursor)
-  console.log(hidden)
   const cursorSpring = useSpring({
     color: cursorContextData.blanco ? "#ffffff" : "#000000",
     linea:
