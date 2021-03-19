@@ -827,17 +827,7 @@ const Layout = allProps => {
                       Establecemos un leguaje visual coherente. Creamos
                       tipografías a medida. Ordenamos tu portfolio de marcas.
                     </p>
-                    <p>
-                      <strong>Gestionar el olvido.</strong> En un momento en el
-                      que la atención es el más escaso de los recursos, las
-                      organizaciones deben trabajar por gestionar el olvido de
-                      las acciones que llevan a cabo en lugar de preocuparse por
-                      alcanzar una notoriedad que hoy en día es más fugaz que
-                      nunca. Diseñamos y cuidamos tu estrategia de activación de
-                      marca estableciendo una conexión real con tus audiencias
-                      que brinde estabilidad y relevancia a medio y largo plazo.
-                      Qué eres y qué no eres. El resto es solo ruido.
-                    </p>
+
                     <p>
                       <strong>Activación fluida.</strong> Creamos webs y
                       productos digitales claros e intuitivos. Diseñamos y
@@ -848,6 +838,17 @@ const Layout = allProps => {
                       packaging y etiquetado a exposiciones, espacios,
                       señalética, campañas, productos audiovisuales y
                       editoriales.
+                    </p>
+                    <p>
+                      <strong>Gestionar el olvido.</strong> En un momento en el
+                      que la atención es el más escaso de los recursos, las
+                      organizaciones deben trabajar por gestionar el olvido de
+                      las acciones que llevan a cabo en lugar de preocuparse por
+                      alcanzar una notoriedad que hoy en día es más fugaz que
+                      nunca. Diseñamos y cuidamos tu estrategia de activación de
+                      marca estableciendo una conexión real con tus audiencias
+                      que brinde estabilidad y relevancia a medio y largo plazo.
+                      Qué eres y qué no eres. El resto es solo ruido.
                     </p>
                     <h6>Equipo</h6>
                     <p>
@@ -980,7 +981,7 @@ const Layout = allProps => {
                         onMouseEnter={() => setCursorPointer("pointer")}
                         onMouseLeave={() => setCursorPointer("default")}
                       >
-                        LinkedIn
+                        Linkedin
                       </a>
                     </div>
                   </div>
