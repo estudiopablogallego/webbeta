@@ -5,7 +5,7 @@ module.exports = {
     title: `Estudio Pablo Gallego`,
     description: ``,
     author: `@tonicq`,
-    apiurl: `http://api.estudiopablogallego.com`,
+    apiurl: `https://api.estudiopablogallego.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
