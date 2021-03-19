@@ -810,43 +810,53 @@ const Layout = allProps => {
                   <div className={s.acerca_textos}>
                     <p className={s.acerca_destacado}>
                       <strong>
-                        Conceptos, imágenes y narrativa construyen tu marca. O
-                        la rompen.
+                        Palabras, imágenes y código construyen tu marca - o la
+                        rompen.
                       </strong>{" "}
                       Somos un estudio de diseño con mentalidad estratégica que
                       ayudamos a nuestros clientes a definir su ecosistema de
-                      marca y a darle vida a través del lenguaje visual y
-                      verbal.
+                      marca y a desarrollar su tratamiento narrativo y visual
+                      para alcanzar a sus diferentes audiencias en cualquier
+                      momento y lugar.
                     </p>
                     <p>
-                      <strong>Estrategia y diseño de marcas.</strong>{" "}
-                      Desarrollamos identidades de marca. Nombramos empresas,
-                      productos y servicios. Diseñamos packaging y etiquetado.
-                      Creamos tipografías a medida y productos editoriales.
+                      <strong>Ecosistema de marca.</strong> Definimos
+                      identidades de marca y construimos plataformas, guías y
+                      pautas de uso. Nombramos empresas, productos y servicios.
+                      Articulamos narrativas de marca y definimos su voz.
+                      Establecemos un leguaje visual coherente. Creamos
+                      tipografías a medida. Ordenamos tu portfolio de marcas.
+                    </p>
+                    <p>
+                      <strong>Gestionar el olvido.</strong> En un momento en el
+                      que la atención es el más escaso de los recursos, las
+                      organizaciones deben trabajar por gestionar el olvido de
+                      las acciones que llevan a cabo en lugar de preocuparse por
+                      alcanzar una notoriedad que hoy en día es más fugaz que
+                      nunca. Diseñamos y cuidamos tu estrategia de activación de
+                      marca estableciendo una conexión real con tus audiencias
+                      que brinde estabilidad y relevancia a medio y largo plazo.
+                      Qué eres y qué no eres. El resto es solo ruido.
                     </p>
                     <p>
                       <strong>Activación fluida.</strong> Creamos webs y
-                      productos digitales claros e intuitivos. Mejoramos la
-                      experiencia del cliente en los puntos de contacto
-                      relevantes. Creamos contenido y eventos capaces de
-                      proyectar lo que somos hacia dentro y hacia fuera, a la
-                      vez que involucran al público en el nuevo paradigma de la
-                      comunicación.
-                    </p>
-                    <h6>Enfoque</h6>
-                    <p>
-                      Cuando todo se encuentra en un estado de cambio constante,
-                      la definición de marcos conceptuales alrededor de la idea
-                      de marca es lo que brinda estabilidad y permite el
-                      desarrollo de contenido estratégico que genere relevancia
-                      a medio y largo plazo. Para nosotros, el reto reside en el
-                      diseño aplicado al pensamiento y su traducción a
-                      diferentes entornos, contextos, momentos y audiencias.
+                      productos digitales claros e intuitivos. Diseñamos y
+                      producimos eventos y contenido capaces de proyectar
+                      identidad de marca a la vez que involucran a su público.
+                      Mejoramos la experiencia de marca en sus puntos de
+                      contacto relevantes. Y diseñamos y escribimos todo, desde
+                      packaging y etiquetado a exposiciones, espacios,
+                      señalética, campañas, productos audiovisuales y
+                      editoriales.
                     </p>
                     <h6>Equipo</h6>
                     <p>
-                      Somos flexibles cuando es posible y claros cuando es
-                      necesario.
+                      Hacemos las preguntas correctas y escuchamos con atención.
+                      Afortunados de vivir en Córdoba, trabajamos en remoto
+                      cuando el proyecto lo requiere. Creemos que cada marca
+                      lleva dentro su propio éxito y sabemos que nuestro trabajo
+                      es identificarlo y revelarlo. Somos claros, transparentes
+                      y defendemos que lo auténtico es poderoso.
                     </p>
                     <ul className={s.acerca_equipo}>
                       <li>
@@ -869,7 +879,7 @@ const Layout = allProps => {
                           {("0" + acercaTime[1]).slice(-2)}
                         </span>
                         <strong>Pablo Gallego</strong>
-                        <p>Dirección creativa verbal y visual</p>
+                        <p>Estrategia, dirección creativa y tipografía</p>
                       </li>
                       <li>
                         {data.fotosbreell.nodes.map((foto, i) => {
@@ -890,7 +900,7 @@ const Layout = allProps => {
                         </span>
 
                         <strong>José Luis Breell</strong>
-                        <p>Dirección de arte visual</p>
+                        <p>Dirección de arte visual, UX/UI</p>
                       </li>
                       <li>
                         {data.fotosjuan.nodes.map((foto, i) => {
@@ -908,7 +918,7 @@ const Layout = allProps => {
                           {("0" + acercaTime[1]).slice(-2)}
                         </span>
                         <strong>Juan Bolaños</strong>
-                        <p>Dirección de arte verbal</p>
+                        <p>Narrativa y activación de marca</p>
                       </li>
                       <li>
                         {data.fotosjaime.nodes.map((foto, i) => {
@@ -929,18 +939,27 @@ const Layout = allProps => {
                         </span>
 
                         <strong>Jaime Gallego</strong>
-                        <p>Producción</p>
+                        <p>Producción y administración</p>
                       </li>
                     </ul>
                     <h6>Contacto</h6>
                     <p className={s.acerca_destacado}>
-                      Si quieres conocernos, puedes escribirnos a{" "}
+                      Si quieres contarnos tu idea, proyecto o saber más sobre
+                      nuestro trabajo, puedes escribirnos a nuestro{" "}
                       <a
                         href="mailto:info@estudiopablogallego.com"
                         onMouseEnter={() => setCursorPointer("pointer")}
                         onMouseLeave={() => setCursorPointer("default")}
                       >
                         email
+                      </a>
+                      , llamarnos al{" "}
+                      <a
+                        href="tel:+34957487166"
+                        onMouseEnter={() => setCursorPointer("pointer")}
+                        onMouseLeave={() => setCursorPointer("default")}
+                      >
+                        957 487 166
                       </a>{" "}
                       o pasarte por nuestro{" "}
                       <a
@@ -951,8 +970,19 @@ const Layout = allProps => {
                       >
                         estudio
                       </a>
-                      . Creemos que será divertido.
+                      . Siempre estamos interesados en nuevas oportunidades y
+                      colaboraciones.
                     </p>
+                    <div className={s.social_links}>
+                      <a
+                        href="https://www.linkedin.com/company/estudio-de-dise-o-/"
+                        target="_blank"
+                        onMouseEnter={() => setCursorPointer("pointer")}
+                        onMouseLeave={() => setCursorPointer("default")}
+                      >
+                        LinkedIn
+                      </a>
+                    </div>
                   </div>
                 </div>
 
