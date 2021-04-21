@@ -1,0 +1,5 @@
+{
+    "rewrites": [
+      { "source": "/proyectos_epg/*", "destination": "http://proyectosepg.estudiopablogallego.com/*" }
+    ]
+}
