@@ -4,7 +4,6 @@
       { "source": "/proyectos_epg/:any/", "destination": "https://manualesepg.estudiopablogallego.com/:any/" }
     ],
     "rewrites": [
-      { "source": "/testt/:match*", "destination": "https://manualesepg.estudiopablogallego.com/:match*/" },
-      { "source": "/testt/:match*/", "destination": "https://manualesepg.estudiopablogallego.com/:match*/" }
+      { "source": "/testt/(.*)", "destination": "https://manualesepg.estudiopablogallego.com/$1" }
     ]
 }
