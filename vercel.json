@@ -1,9 +1,5 @@
 {
-    "redirects": [
-      { "source": "/proyectos_epg/:any", "destination": "https://manualesepg.estudiopablogallego.com/:any/" },
-      { "source": "/proyectos_epg/:any/", "destination": "https://manualesepg.estudiopablogallego.com/:any/" }
-    ],
     "rewrites": [
-      { "source": "/testt/(.*)", "destination": "https://manualesepg.estudiopablogallego.com/$1" }
+      { "source": "/proyectos_epg/(.*)", "destination": "https://manualesepg.estudiopablogallego.com/$1" }
     ]
 }
