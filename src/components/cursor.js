@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import s from "./cursor.module.scss"
+import * as s from "./cursor.module.scss"
 import { useSprings, useSpring, animated as a } from "react-spring"
 // import { interpolate } from 'flubber'
 import CursorContext from "../context/cursorContext"

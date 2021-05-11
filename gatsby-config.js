@@ -1,6 +1,9 @@
 const postcssPresetEnv = require("postcss-preset-env")
 
 module.exports = {
+  flags: {
+    DEV_SSR: false,
+  },
   siteMetadata: {
     title: `Estudio Pablo Gallego`,
     description: ``,

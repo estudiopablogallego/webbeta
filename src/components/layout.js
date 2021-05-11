@@ -23,7 +23,7 @@ import _ from "lodash"
 import Header from "./header"
 import "../styles/discreta.css"
 import "./layout.css"
-import s from "./layout.module.scss"
+import * as s from "./layout.module.scss"
 import Cursor from "./cursor"
 import CursorContext from "../context/cursorContext"
 import forEach from "lodash/forEach"
@@ -73,7 +73,9 @@ const Layout = allProps => {
             pwid
             imagen_oscura
             imagen_vineta_horizontal
+            imagen_vineta_horizontal_opacidad
             imagen_vineta_vertical
+            imagen_vineta_vertical_opacidad
             beta_imagen_vertical
             beta_imagen_vertical_base64
             beta_imagen_horizontal
@@ -574,6 +576,9 @@ const Layout = allProps => {
                                 slides[i].imagen_vineta_horizontal
                             ]
                           }`}
+                          style={{
+                            '--alpha': slides[i].imagen_vineta_horizontal_opacidad ? slides[i].imagen_vineta_horizontal_opacidad * 0.01 : 0.35
+                          }}
                         >
                           <Img
                             fluid={{
