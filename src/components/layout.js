@@ -959,24 +959,14 @@ const Layout = allProps => {
                       >
                         email
                       </a>
-                      , llamarnos al{" "}
+                      {" "} o llamarnos al{" "}
                       <a
                         href="tel:+34957487166"
                         onMouseEnter={() => setCursorPointer("pointer")}
                         onMouseLeave={() => setCursorPointer("default")}
                       >
                         957 487 166
-                      </a>{" "}
-                      o pasarte por nuestro{" "}
-                      <a
-                        href="https://goo.gl/maps/XeBBkwg1ykxEKomRA"
-                        target="_blank"
-                        onMouseEnter={() => setCursorPointer("pointer")}
-                        onMouseLeave={() => setCursorPointer("default")}
-                      >
-                        estudio
-                      </a>
-                      . Siempre estamos interesados en nuevas oportunidades y
+                      </a>. Siempre estamos interesados en nuevas oportunidades y
                       colaboraciones.
                     </p>
                     <div className={s.social_links}>
