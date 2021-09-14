@@ -19,8 +19,8 @@ const IndexPage = pagedata => {
   return (
     <>
       <SEO
-        title={seo_title || title}
-        description={seo_description || texto}
+        title={seo_title ? seo_title : title}
+        description={seo_description ? seo_description : texto}
         image={seo_image}
       />
       <div
