@@ -459,7 +459,10 @@ const Layout = allProps => {
         goToSlide(loadedSlide.index)
       } else {
         goToSlide(0)
-        if (window.location.pathname.substring(1) === "info") {
+        if (
+          window.location.pathname.substring(1) === "info" ||
+          window.location.pathname.substring(1) === "info/"
+        ) {
           onMostrarAcerca()
         }
       }
