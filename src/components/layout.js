@@ -17,10 +17,9 @@ import TransitionLink from "gatsby-plugin-transition-link"
 import { useWindowSize } from "./helpers/useWindowSize"
 
 import Img from "gatsby-image/withIEPolyfill"
-import { useSprings, useSpring, animated as a } from "react-spring"
+import { useSprings, animated as a } from "react-spring"
 import { useDrag } from "react-use-gesture"
 import _ from "lodash"
-import Header from "./header"
 import "../styles/discreta.css"
 import "./layout.css"
 import * as s from "./layout.module.scss"
@@ -460,6 +459,9 @@ const Layout = allProps => {
         goToSlide(loadedSlide.index)
       } else {
         goToSlide(0)
+        if (window.location.pathname.substring(1) === "info") {
+          onMostrarAcerca()
+        }
       }
       return
     }
@@ -474,6 +476,11 @@ const Layout = allProps => {
     const hora = d.getHours()
     const minutos = d.getMinutes()
     setAcercaTime([hora, minutos])
+    navigate(`/info`)
+  }
+  const onOcultaAcerca = () => {
+    setAcercaVisible(false)
+    navigate(`/${slides[activeSlide.current].projectSlug}`)
   }
   // // Si es SSR oculta el resto de slides
   // if (typeof window === "undefined") {
@@ -493,6 +500,26 @@ const Layout = allProps => {
   //OnResize
 
   const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1024
+
+  const Persona = ({ nombre, labor, fotos }) => (
+    <li>
+      {fotos.nodes.map((foto, i) => {
+        return (
+          <Img
+            className={i === acercaTime[0] ? s.active : ""}
+            key={i}
+            fluid={foto.childImageSharp.fluid}
+            alt={i === acercaTime[0] ? nombre : "---"}
+          />
+        )
+      })}
+      <span>
+        {("0" + acercaTime[0]).slice(-2)}:{("0" + acercaTime[1]).slice(-2)}
+      </span>
+      <strong>{nombre}</strong>
+      <p>{labor}</p>
+    </li>
+  )
 
   return (
     <CursorContext.Consumer>
@@ -577,7 +604,11 @@ const Layout = allProps => {
                             ]
                           }`}
                           style={{
-                            '--alpha': slides[i].imagen_vineta_horizontal_opacidad ? slides[i].imagen_vineta_horizontal_opacidad * 0.01 : 0.35
+                            "--alpha": slides[i]
+                              .imagen_vineta_horizontal_opacidad
+                              ? slides[i].imagen_vineta_horizontal_opacidad *
+                                0.01
+                              : 0.35,
                           }}
                         >
                           <Img
@@ -792,7 +823,8 @@ const Layout = allProps => {
                 <div
                   className={s.acerca_content_fondo}
                   onClick={() => {
-                    setAcercaVisible(!acercaVisible)
+                    onOcultaAcerca()
+                    // setAcercaVisible(!acercaVisible)
                     cursorContextData.setBlanco(
                       slides[activeSlide.current].imagen_oscura
                     )
@@ -803,7 +835,8 @@ const Layout = allProps => {
                     to="/"
                     onClick={() => {
                       goToSlide(0)
-                      setAcercaVisible(!acercaVisible)
+                      // setAcercaVisible(!acercaVisible)
+                      onOcultaAcerca()
                       cursorContextData.setBlanco(
                         slides[activeSlide.current].imagen_oscura
                       )
@@ -813,6 +846,8 @@ const Layout = allProps => {
                     Estudio <strong>Pablo Gallego</strong>
                   </TransitionLink>
                   <div className={s.acerca_textos}>
+                    {/* 👇 A partir de aquí se puede tocar 👇 */}
+
                     <p className={s.acerca_destacado}>
                       <strong>
                         Palabras, imágenes y código construyen tu marca - o la
@@ -865,88 +900,26 @@ const Layout = allProps => {
                       y defendemos que lo auténtico es poderoso.
                     </p>
                     <ul className={s.acerca_equipo}>
-                      <li>
-                        {data.fotospablo.nodes.map((foto, i) => {
-                          return (
-                            <Img
-                              className={i === acercaTime[0] ? s.active : ""}
-                              key={i}
-                              fluid={foto.childImageSharp.fluid}
-                              alt={
-                                i === acercaTime[0]
-                                  ? "Pablo Gallego Sevilla"
-                                  : "---"
-                              }
-                            />
-                          )
-                        })}
-                        <span>
-                          {("0" + acercaTime[0]).slice(-2)}:
-                          {("0" + acercaTime[1]).slice(-2)}
-                        </span>
-                        <strong>Pablo Gallego</strong>
-                        <p>Estrategia, dirección creativa y tipografía</p>
-                      </li>
-                      <li>
-                        {data.fotosbreell.nodes.map((foto, i) => {
-                          return (
-                            <Img
-                              className={i === acercaTime[0] ? s.active : ""}
-                              key={i}
-                              fluid={foto.childImageSharp.fluid}
-                              alt={
-                                i === acercaTime[0] ? "José Luis Breell" : "---"
-                              }
-                            />
-                          )
-                        })}
-                        <span>
-                          {("0" + acercaTime[0]).slice(-2)}:
-                          {("0" + acercaTime[1]).slice(-2)}
-                        </span>
-
-                        <strong>José Luis Breell</strong>
-                        <p>Dirección de arte visual, UX/UI</p>
-                      </li>
-                      <li>
-                        {data.fotosjuan.nodes.map((foto, i) => {
-                          return (
-                            <Img
-                              className={i === acercaTime[0] ? s.active : ""}
-                              key={i}
-                              fluid={foto.childImageSharp.fluid}
-                              alt={i === acercaTime[0] ? "Juan Bolaños" : "---"}
-                            />
-                          )
-                        })}
-                        <span>
-                          {("0" + acercaTime[0]).slice(-2)}:
-                          {("0" + acercaTime[1]).slice(-2)}
-                        </span>
-                        <strong>Juan Bolaños</strong>
-                        <p>Narrativa y activación de marca</p>
-                      </li>
-                      <li>
-                        {data.fotosjaime.nodes.map((foto, i) => {
-                          return (
-                            <Img
-                              className={i === acercaTime[0] ? s.active : ""}
-                              key={i}
-                              fluid={foto.childImageSharp.fluid}
-                              alt={
-                                i === acercaTime[0] ? "Jaime Gallego" : "---"
-                              }
-                            />
-                          )
-                        })}
-                        <span>
-                          {("0" + acercaTime[0]).slice(-2)}:
-                          {("0" + acercaTime[1]).slice(-2)}
-                        </span>
-
-                        <strong>Jaime Gallego</strong>
-                        <p>Producción y administración</p>
-                      </li>
+                      <Persona
+                        nombre="Pablo Gallego Sevilla"
+                        labor="Estrategia, dirección creativa y tipografía"
+                        fotos={data.fotospablo}
+                      />
+                      <Persona
+                        nombre="José Luis Breell"
+                        labor="Dirección de arte visual, UX/UI"
+                        fotos={data.fotosbreell}
+                      />
+                      <Persona
+                        nombre="Juan Bolaños"
+                        labor="Narrativa y activación de marca"
+                        fotos={data.fotosjuan}
+                      />
+                      <Persona
+                        nombre="Jaime Gallego"
+                        labor="Producción y administración"
+                        fotos={data.fotosjaime}
+                      />
                     </ul>
                     <h6>Contacto</h6>
                     <p className={s.acerca_destacado}>
@@ -958,17 +931,20 @@ const Layout = allProps => {
                         onMouseLeave={() => setCursorPointer("default")}
                       >
                         email
-                      </a>
-                      {" "} o llamarnos al{" "}
+                      </a>{" "}
+                      o llamarnos al{" "}
                       <a
                         href="tel:+34957487166"
                         onMouseEnter={() => setCursorPointer("pointer")}
                         onMouseLeave={() => setCursorPointer("default")}
                       >
                         957 487 166
-                      </a>. Siempre estamos interesados en nuevas oportunidades y
+                      </a>
+                      . Siempre estamos interesados en nuevas oportunidades y
                       colaboraciones.
                     </p>
+                    {/* ⛔️ AQUI YA NO SE PUEDE TOCAR ⛔️ */}
+
                     <div className={s.social_links}>
                       <a
                         href="https://www.linkedin.com/company/estudio-de-dise-o-/"
@@ -989,6 +965,7 @@ const Layout = allProps => {
                   onMouseLeave={() => setCursorPointer("default")}
                   onClick={() => {
                     setAcercaVisible(!acercaVisible)
+                    onOcultaAcerca()
                     cursorContextData.setBlanco(
                       slides[activeSlide.current].imagen_oscura
                     )

@@ -6,9 +6,9 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import SEO from "../components/seo"
 
-const IndexPage = () => {
+const InfoPage = () => {
   const data = useStaticQuery(graphql`
-    query myquery {
+    query aaaacercaquery {
       processwire {
         general {
           seo_description
@@ -26,4 +26,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default InfoPage
