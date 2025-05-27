@@ -935,14 +935,6 @@ const Layout = allProps => {
                       >
                         email
                       </a>{" "}
-                      o llamarnos al{" "}
-                      <a
-                        href="tel:+34957487166"
-                        onMouseEnter={() => setCursorPointer("pointer")}
-                        onMouseLeave={() => setCursorPointer("default")}
-                      >
-                        957 487 166
-                      </a>
                       . Siempre estamos interesados en nuevas oportunidades y
                       colaboraciones.
                     </p>
